@@ -1,0 +1,20 @@
+ExportVersionWindows - export checklist
+=======================================
+
+Platform: Windows (DLL)
+
+Root: README.md, CONTACT.txt, EXPORT_CHECKLIST.txt
+licenses/: LICENSE_VAPI.txt, LICENSE_GLFW.txt, LICENSE_VULKAN.txt, README.txt
+docs/: README.md, 01-overview.md ... 06-worksheet.md
+examples/: main.c, README.md
+
+bin/ (filled from dll/ by vapi_export_copy when VAPI_BUILD_DLL=ON):
+  [x] VAPI DLL (libvapi_shared.dll or vapi.dll)
+  [x] vapi_c_api.hpp
+  [x] Import library (vapi.lib or libvapi_shared.dll.a)
+  [x] shaders/ (ui.vert.spv, ui.frag.spv)
+  [ ] vulkan-1.dll  - Copied from: VULKAN_SDK Bin/Bin32, or VULKAN_LOADER_DLL, or %SystemRoot%\System32 or SysWOW64. Required at runtime.
+  [x] glfw3.dll     - Copied only from VAPI_GLFW_DIR (no static/import lib in bin/)
+  [x] README.txt, HOWTO_USE.md
+
+Before publishing: ensure vulkan-1.dll is in bin/ (build with VULKAN_SDK or so system copy is used, or add manually). Do not distribute .git or .idea.

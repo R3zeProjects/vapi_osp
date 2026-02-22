@@ -1,0 +1,9 @@
+VAPI - Licensing and commercial use
+
+For licensing inquiries (including commercial use or free agreement with
+the copyright holder), contact the VAPI authors at:
+
+  r3ze.projects@gmail.com
+
+Agreement can be free of charge; you must still obtain written agreement
+for any commercial use. See licenses/LICENSE_VAPI.txt in this distribution.
