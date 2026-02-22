@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vapi"
+version = "0.0.1"
+description = "Python bindings for VAPI (Vulkan/GLFW app library) — Windows"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "See licenses/LICENSE_VAPI.txt" }
+keywords = ["vulkan", "glfw", "gui", "vapi"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Multimedia :: Graphics",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[project.scripts]
+vapi = "vapi.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["bin"]
+include = ["vapi*"]

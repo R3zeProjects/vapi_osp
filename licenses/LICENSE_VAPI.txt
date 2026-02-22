@@ -1,0 +1,99 @@
+VAPI DUAL LICENSE
+Free Use / Commercial Use by Agreement
+
+Copyright (c) 2025-2026 VAPI Authors. All rights reserved.
+
+================================================================================
+1. DEFINITIONS
+================================================================================
+
+"Software" means the VAPI library (source code, binaries, documentation, and
+any files distributed as part of the VAPI project), excluding third-party
+components. Third-party components (e.g. GLFW, Vulkan) have their own licenses
+in this directory (LICENSE_GLFW.txt, LICENSE_VULKAN.txt) and are not covered
+by this license.
+
+"Commercial Use" means any use of the Software or derivative works:
+  - for monetary gain, or
+  - in connection with commercial products or services, or
+  - distribution or sublicensing to third parties for commercial purposes,
+including but not limited to: proprietary software, SaaS, paid applications,
+or any use by or for a commercial entity where the Software is part of a
+revenue-generating product or service.
+
+"Agreement" means prior written consent from the copyright holder (VAPI
+Authors). Contact for licensing: see CONTACT.txt in this distribution.
+
+================================================================================
+2. PERMITTED USE (NON-COMMERCIAL)
+================================================================================
+
+You may use, copy, and modify the Software for non-commercial purposes,
+including:
+
+  - Personal or educational use
+  - Internal evaluation and testing
+  - Open-source projects that do not commercially distribute the Software
+    or derivative works based on it
+
+Conditions:
+
+  (a) You accept these terms. Use of the Software constitutes acceptance of
+      this license for non-commercial use.
+
+  (b) You retain this license file and all copyright notices in any copy or
+      derivative work you distribute.
+
+  (c) You do not engage in Commercial Use (see Section 3) without Agreement.
+
+================================================================================
+3. COMMERCIAL USE — AGREEMENT REQUIRED
+================================================================================
+
+Commercial Use of the Software is not permitted without prior written
+Agreement with the copyright holder. Without limitation, the following are
+prohibited without such Agreement:
+
+  - Using the Software in commercial products or services
+  - Distributing the Software or derivative works for commercial purposes
+  - Modifying or creating derivative works of the Software for commercial
+    use or distribution
+  - Sublicensing the Software for commercial use
+
+You must obtain written Agreement before any Commercial Use. For inquiries
+(including free-of-charge agreement where applicable), see CONTACT.txt.
+
+================================================================================
+4. THIRD-PARTY COMPONENTS (GLFW, VULKAN)
+================================================================================
+
+VAPI does not modify, alter, or create derivative works of GLFW or Vulkan
+(or their SDKs/loaders). VAPI uses them as unmodified external dependencies.
+This library is intended for building graphics applications on top of
+Vulkan and GLFW. All rights in GLFW and Vulkan remain with their respective
+authors and licensors. Full license texts for those components are in this
+directory (LICENSE_GLFW.txt, LICENSE_VULKAN.txt). This notice is for clarity
+only and does not claim any rights over third-party software.
+
+================================================================================
+5. DISCLAIMER OF WARRANTY
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+6. GENERAL
+================================================================================
+
+The terms that govern your use of the Software are those in effect at the
+time of such use. This license grants only the rights expressly stated;
+no other rights are granted. The copyright holder's failure to enforce any
+provision does not waive that provision or the right to enforce it later.
+
+Licensing inquiries: CONTACT.txt in this distribution.
