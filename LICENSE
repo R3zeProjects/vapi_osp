@@ -1,0 +1,34 @@
+VAPI OSP — DUAL LICENSE
+Free for non-commercial use. Commercial use is welcome under an Agreement with the Creator.
+
+Copyright (c) 2025–2026 R3zeProjects. All rights reserved.
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+
+This software is free to use for non-commercial purposes (personal, educational,
+open-source evaluation). Commercial use is permitted only after an Agreement Document from the Creator:
+a document sent from the Creator's designated email, containing the required
+data and (when the Creator publishes a signature scheme) verifiable by
+signature. Only the Creator may issue an Agreement. Any organization using
+the software for commercial purposes must have such an Agreement. You may not
+distribute modified versions without disclosing changes and the Creator's
+agreement; you may not present the software as your own without the Creator's
+agreement. Forgery or falsification of permission is prohibited and void.
+
+The software is distributed publicly only in the form of dynamic-link
+libraries (DLL). Source code may be distributed only with the Creator's
+permission and, where required, the recipient's written guarantees not to
+violate the concluded agreement (see licenses/LICENSE_VAPI.txt, Section 1A).
+
+Full license terms: see licenses/LICENSE_VAPI.txt in this repository.
+Third-party licenses: see licenses/ directory (GLFW, Vulkan SDK).
+Licensing inquiries: see CONTACT.txt (if present) or open an issue at
+  https://github.com/R3zeProjects/vapi_osp/issues
+
+--------------------------------------------------------------------------------
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM USE OF THE SOFTWARE.
+--------------------------------------------------------------------------------

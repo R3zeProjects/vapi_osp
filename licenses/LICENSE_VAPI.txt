@@ -1,0 +1,455 @@
+================================================================================
+VAPI OSP SOFTWARE LICENSE
+Version 1.0, effective 2026
+================================================================================
+
+Copyright (c) 2025–2026 R3zeProjects. All rights reserved.
+
+This license governs your use of the VAPI OSP software ("Software"), including
+its source code, compiled binaries, documentation, shaders, and any associated
+files distributed as part of this project.
+
+Third-party components (GLFW, Vulkan SDK/Loader, STB libraries) are NOT covered
+by this license. Their respective license texts are in this directory:
+  LICENSE_GLFW.txt   — GLFW (zlib/libpng)
+  LICENSE_VULKAN.txt — Vulkan SDK/Loader (Apache 2.0)
+
+================================================================================
+ACCEPTANCE
+================================================================================
+
+In order to receive or use any rights under this license, you must agree to
+these terms as strict obligations and conditions to all your use of the
+Software. Use of the Software constitutes acceptance of these terms. If you
+do not agree, you may not use, copy, or distribute the Software.
+
+This license is source-available and dual (non-commercial free / commercial
+by permission). It is not an "Open Source" license under the Open Source
+Initiative definition, because it restricts commercial use without the
+Creator's permission. Commercial use of the Software is welcome under an
+Agreement (Section 3); the Creator encourages commercial adoption and may
+grant Agreements free of charge for qualifying projects.
+
+================================================================================
+1. DEFINITIONS
+================================================================================
+
+"Software" means the VAPI OSP library: source code, binaries, documentation,
+shaders, and all files in this repository/distribution, excluding third-party
+components identified above.
+
+"Non-Commercial Use" means use exclusively for purposes that are NOT primarily
+intended for or directed toward commercial advantage or monetary compensation.
+Examples include, without limitation: personal hobby projects, academic study,
+educational coursework, and internal evaluation of the Software prior to
+entering a commercial agreement.
+
+"Commercial Use" means any use of the Software or derivative works that:
+  (a) is intended for or directed toward commercial advantage or monetary
+      compensation, including indirectly;
+  (b) is incorporated into a commercial product, service, or SaaS offering;
+  (c) is used by or on behalf of a for-profit legal entity in its operations,
+      even if no direct revenue is derived from the Software itself;
+  (d) involves distribution, sublicensing, or sale of the Software or any
+      derivative work to third parties for commercial purposes;
+  (e) is use of the Software within any application, product, tool, or service
+      that is itself commercial or that is used (directly or indirectly, in
+      any number of steps) to create, support, or deliver a commercial
+      application, product, or service. The presence of one or more intermediate
+      non-commercial uses does not alter this: if any link in the chain of use
+      is commercial, the use of the Software in that chain is Commercial Use.
+
+"Creator" means the copyright holder of the Software (R3zeProjects / the
+author(s) of VAPI OSP). Only the Creator has the authority to grant rights
+for Commercial Use. No third party, licensee, or contributor may grant
+commercial rights to the Software.
+
+"Derivative Work" means any work that is based on or derived from the Software,
+including modifications, translations, adaptations, and works that incorporate
+all or a substantial portion of the Software.
+
+"Agreement" means a valid commercial license for Commercial Use, evidenced by
+an Agreement Document (see Section 3A) sent from the Creator's designated
+Official Channel (email). The Agreement must be obtained before any Commercial
+Use. Only the Creator may issue an Agreement; any document or message from any
+other party is not valid. Permission must be verifiable as originating from the
+Creator (document sent from the Creator's published email and, where the
+Creator uses a signature scheme, verifiable with the Creator's published
+public key). Unverifiable or unverifiable-looking permission does not
+constitute an Agreement.
+
+"Agreement Document" means a written document that (a) is sent from the
+Creator's designated email (Official Channel), (b) contains a set of data known
+to the Creator (e.g. licensee identity, scope of use, effective date, and
+other terms or references the Creator chooses), (c) clearly grants permission for
+the specified Commercial Use, and (d) where the Creator has published a
+signature verification means (e.g. PGP public key), is signed so that the
+recipient can verify authenticity. The format and required content of the
+Agreement Document are described in Section 3A and in the repository (e.g.
+licenses/CREATOR_SIGNING.md).
+
+"Official Channel" means the contact or verification means designated by the
+Creator in this repository or in CONTACT.txt for issuing commercial
+permission—in particular the Creator's designated email address from which
+the Agreement Document must be sent, and optionally the Creator's published
+PGP public key for verifying signed documents. Only the Creator controls
+Official Channels. The Creator may publish a list or description of Official
+Channels so that licensees can verify that permission genuinely comes from the
+Creator.
+
+"You" means the individual or legal entity accepting these terms.
+
+================================================================================
+1A. DISTRIBUTION FORM AND SOURCE CODE
+================================================================================
+
+(a) Any distribution of the Software in binary form to third parties
+    (whether for commercial or non-commercial use) is permitted only in the
+    form of dynamic-link libraries (DLL or equivalent shared libraries).
+    Static linking or distribution of the Software in statically linked form
+    is not permitted unless the Creator has granted a separate written
+    permission. This applies in particular to distribution under Section 2
+    (non-commercial) and to any redistribution of binaries.
+
+(b) Distribution of the source code of the Software to third parties is
+    permitted only with the prior written permission of the Creator. The
+    Creator may grant such permission under conditions that the Creator
+    specifies, including the requirement in (c) below.
+
+(c) Where the Creator grants permission to receive or distribute source code,
+    the recipient must provide the Creator with written guarantees that the
+    recipient will not violate the concluded agreement—meaning this license
+    and any separate written agreement with the Creator governing use or
+    distribution of the Software. The Creator may require such guarantees
+    in a form specified by the Creator (e.g. signed undertaking or agreement
+    document) before providing or authorizing access to the source code.
+
+================================================================================
+2. NON-COMMERCIAL USE — PERMITTED
+================================================================================
+
+Subject to the conditions in Section 4 (including Section 4 on modifications and
+attribution), you are permitted to:
+
+  (a) Download, copy, and install the Software for Non-Commercial Use;
+  (b) Study, inspect, and modify the Software for your internal Non-Commercial
+      Use;
+  (c) Distribute unmodified copies of the Software for Non-Commercial Use,
+      provided all conditions in Section 4 are met and any binary distribution
+      complies with Section 1A(a) (DLL form only);
+  (d) Distribute modified copies of the Software for Non-Commercial Use only if
+      you comply with Section 4 (modifications and Creator agreement as stated
+      there) and any binary distribution complies with Section 1A(a) (DLL form
+      only).
+
+This permission is granted free of charge. You may not distribute modified
+versions of the Software without disclosing your changes and, where required
+by Section 4, obtaining the Creator's prior written agreement.
+
+Permitted purposes (Non-Commercial) include, without limitation: personal use
+for research, experiment, testing, personal study, private entertainment, hobby
+projects, or amateur pursuits without any anticipated commercial application;
+use by charitable organizations, educational institutions, public research or
+public safety or health organizations, environmental protection organizations,
+or government institutions regardless of funding source; and internal evaluation
+of the Software prior to obtaining an Agreement for Commercial Use.
+
+================================================================================
+3. COMMERCIAL USE — AGREEMENT REQUIRED
+================================================================================
+
+The Creator encourages commercial use of the Software under a clear
+Agreement. An Agreement gives you a defined scope of use, legal clarity, and
+a single point of contact. The Creator may grant Agreements free of charge
+for qualifying projects at the Creator's sole discretion. When requesting an
+Agreement, you should indicate the purpose (goal) of use, the type of use,
+and the term (duration) desired—implementation details of your product are
+not required; see CONTACT.txt for details.
+
+Commercial Use of the Software is PROHIBITED unless you have obtained a prior
+Agreement. Any organization (including for-profit entities, sole
+proprietorships, and any legal entity) that uses the Software for Commercial
+Use must have a valid Agreement with the Creator. A valid Agreement exists
+only when the Creator has issued an Agreement Document sent from the
+Creator's designated email (Official Channel), as defined in Section 3A.
+Only the Creator has the right to grant commercial use of the Software; no
+other person or entity may grant such rights. A reply or permission from
+anyone other than the Creator does not constitute a valid Agreement.
+
+Without a valid Agreement, the following are expressly prohibited regardless
+of intent or form:
+
+  (a) Using the Software (in whole or in part) in any commercial product,
+      service, application, or SaaS platform;
+  (b) Distributing, sublicensing, or selling the Software or Derivative Works
+      for commercial purposes or to commercial entities;
+  (c) Using the Software within a for-profit organization in any capacity
+      other than Non-Commercial Use as defined in Section 1;
+  (d) Providing the Software or access to it as part of a paid or free-of-charge
+      commercial service, where such service generates revenue through other means;
+  (e) Using the Software in any application or product that is subsequently
+      used (directly or indirectly) in a commercial offering—see definition
+      of Commercial Use in Section 1.
+
+Anti-piracy and misuse (commercial context):
+
+  (f) You may not sublicense the Software or grant to any third party the right
+      to use the Software for Commercial Use without the Creator's prior
+      written consent.
+  (g) You may not redistribute the Software or Derivative Works for commercial
+      purposes, or as part of a commercial distribution, without a valid
+      Agreement covering that redistribution.
+  (h) You may not circumvent, bypass, or disable any license or use restrictions
+      that the Creator may impose in connection with commercial licensing or
+      distribution of the Software.
+  (i) Use of the Software in violation of this license, including Commercial
+      Use without a valid Agreement, may result in termination of your rights
+      and liability for damages to the extent permitted by applicable law.
+
+Forgery and misrepresentation:
+
+  (j) You may not forge, falsify, or misrepresent any permission, signature,
+      or communication purporting to be from the Creator. You may not create,
+      alter, or use any document, email, or message that falsely claims or
+      implies that the Creator has granted you commercial or other rights.
+  (k) Any permission, signature, or communication that has been forged,
+      falsified, or misrepresented is void and does not constitute an
+      Agreement. Reliance on such permission does not grant you any rights
+      under this license.
+  (l) Forgery or misrepresentation of the Creator's permission may be reported
+      to the Creator and to the competent authorities and may result in
+      termination of your rights, liability for damages, and consequences under
+      applicable law (including criminal law where applicable).
+
+For commercial licensing inquiries, contact the Creator as described in
+CONTACT.txt or at: https://github.com/R3zeProjects/vapi_osp (issues or
+designated contact). Only an Agreement Document sent from the Creator's
+designated email (and, where applicable, verifiable by the Creator's
+published signature) constitutes a valid Agreement. The Creator may publish
+Official Channels and verification means in this repository or in CONTACT.txt.
+
+Free-of-charge commercial agreements may be available for qualifying projects
+at the sole discretion of the Creator.
+
+================================================================================
+3A. AGREEMENT DOCUMENT — FORM AND VERIFICATION
+================================================================================
+
+Commercial permission is granted only by an Agreement Document that meets all
+of the following:
+
+  (a) The document is sent from the Creator's designated email address
+      (Official Channel) published in CONTACT.txt or in this repository.
+
+  (b) The document contains a set of data known to the Creator, such as:
+      the licensee's identity (name or legal entity), the purpose (goal) and
+      type of use (implementation details of the licensee's product are not
+      required), the scope of permitted use, the term (duration) or effective
+      date, and any other terms or reference numbers the Creator uses to
+      identify the grant. This data allows the Creator and the licensee to
+      confirm the authenticity and scope of the permission.
+
+  (c) The document clearly states that the Creator grants permission for
+      the specified Commercial Use of the Software (or references a
+      separate agreement that does so).
+
+  (d) Where the Creator has published a means to verify signatures (e.g. a
+      PGP public key in CONTACT.txt or in the repository), the document
+      is signed with the Creator's private key so that the licensee can
+      verify with the Creator's public key that the document originated
+      from the Creator and was not altered. Instructions for the Creator
+      on how to create and use a signature (e.g. PGP key generation and
+      document signing) are in the repository: see licenses/CREATOR_SIGNING.md.
+
+A document that is not sent from the Creator's designated email, or that
+lacks the verifiable data or signature when the Creator has published a
+signature scheme, does not constitute a valid Agreement. Licensees may
+confirm with the Creator via the repository or CONTACT.txt if in doubt.
+
+================================================================================
+4. CONDITIONS FOR ALL USE
+================================================================================
+
+Any permitted use of the Software (commercial under Agreement, or non-commercial
+under Section 2) is subject to the following conditions:
+
+  (a) You must retain this license file (LICENSE_VAPI.txt), the root LICENSE
+      file, and all copyright notices in any copy, binary, or Derivative Work
+      you create or distribute.
+
+  (b) Modifications: You may not distribute modified versions of the Software
+      (including Derivative Works) without (i) prominently disclosing that
+      the Software has been modified and describing the nature of the
+      modifications, and (ii) obtaining the Creator's prior written agreement
+      for the distribution of such modified version, unless the Creator has
+      waived this requirement in writing. Internal modifications for your
+      own Non-Commercial Use that you do not distribute are permitted without
+      such agreement, but any distribution of modified code or binaries
+      requires disclosure and the Creator's agreement as stated above.
+
+  (c) No misappropriation: You may not present the Software (or any Derivative
+      Work) as your own work or as a product not authored by or originating
+      from the Creator. You may not remove or obscure the origin of the
+      Software, and may not claim ownership or authorship of the Software
+      or present it as your product, without a separate written agreement
+      with the Creator permitting such use.
+
+  (d) You must not remove, obscure, or alter any copyright, trademark, or
+      attribution notices present in the Software.
+
+  (e) You must not use the name "VAPI", "R3zeProjects", or the names of
+      contributors to endorse or promote products derived from this Software
+      without prior written permission.
+
+  (f) You must comply with the license terms of all third-party components
+      incorporated in the Software (see licenses/ directory).
+
+  (g) You must not forge, falsify, or misrepresent any permission or
+      signature from the Creator, and must not use or rely on any permission
+      that you know or have reason to believe has been forged or falsified.
+
+  (h) This license does not grant you any right in any trademark, service
+      mark, or logo of the Creator or its affiliates. You may not use the
+      Creator's marks to endorse or promote your product without prior
+      written permission (see condition (e) above).
+
+================================================================================
+5. NOTICES TO RECIPIENTS
+================================================================================
+
+You must ensure that anyone who receives a copy of any part of the Software
+from you (in source or binary form) also receives a copy of these terms or
+a URL that leads to them (e.g. the repository or a stable copy of this
+license), and retains the copyright and attribution notices required in
+Section 4. If the Creator provides any "Required Notice" line with the
+Software, you must include it in distributions.
+
+================================================================================
+6. NO OTHER RIGHTS
+================================================================================
+
+These terms do not allow you to sublicense or transfer your rights under this
+license to any third party, except that you may distribute the Software in
+accordance with Section 2 and Section 5. These terms do not prevent the
+Creator from granting licenses to others. No other licenses or rights are
+granted by implication, estoppel, or otherwise.
+
+================================================================================
+7. FAIR USE
+================================================================================
+
+You may have rights under applicable law (such as fair use, fair dealing, or
+equivalent exceptions to copyright) to use the Software. This license does not
+limit those rights.
+
+================================================================================
+8. PATENT LICENSE
+================================================================================
+
+The Creator grants you a non-exclusive, royalty-free patent license under
+patent claims that the Creator can license, or later becomes able to license,
+that you would infringe by using the Software as permitted under this
+license. If you or your organization make a written claim that the Software
+infringes or contributes to infringement of any patent, this patent license
+ends immediately for you (or for work on behalf of your organization).
+
+================================================================================
+9. THIRD-PARTY COMPONENTS
+================================================================================
+
+VAPI OSP uses third-party libraries as unmodified external dependencies.
+It does NOT modify, sublicense, or claim ownership over:
+
+  — GLFW (https://www.glfw.org/) — licensed under the zlib/libpng License.
+    See LICENSE_GLFW.txt.
+
+  — Vulkan SDK / Vulkan Loader (https://www.khronos.org/vulkan/) — licensed
+    under the Apache License 2.0. See LICENSE_VULKAN.txt.
+
+  — STB libraries (https://github.com/nothings/stb) — vendored in third_party/;
+    licensed under MIT or Public Domain (dual). See individual file headers.
+
+Your use of these components is governed solely by their respective licenses.
+
+================================================================================
+10. DISCLAIMER OF WARRANTIES
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+THE COPYRIGHT HOLDER DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR
+REQUIREMENTS, THAT IT WILL OPERATE WITHOUT INTERRUPTION, OR THAT IT WILL BE
+FREE OF ERRORS OR DEFECTS.
+
+YOU ASSUME ALL RISKS ASSOCIATED WITH YOUR USE OF THE SOFTWARE. THE ENTIRE RISK
+AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH YOU.
+
+================================================================================
+11. LIMITATION OF LIABILITY
+================================================================================
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+THIS LIMITATION APPLIES EVEN IF THE COPYRIGHT HOLDER HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES, AND EVEN IF ANY REMEDY FAILS OF ITS ESSENTIAL
+PURPOSE.
+
+================================================================================
+12. VIOLATIONS AND TERMINATION
+================================================================================
+
+Your rights under this license terminate automatically if you fail to comply
+with any of its terms. The first time you are notified in writing that you
+have violated any of these terms (or done anything with the Software not
+covered by your rights), your rights may nonetheless continue if you come
+into full compliance and take practical steps to correct past violations
+within 30 days of receiving that notice. Otherwise, all your rights under
+this license end immediately. Termination for forgery or misrepresentation
+(Section 3) or for repeated or serious breach may be immediate, without a
+cure period, at the Creator's discretion.
+
+Upon termination, you must immediately cease all use and distribution of the
+Software and destroy all copies in your possession or control.
+
+Sections 10 (Disclaimer), 11 (Limitation of Liability), 4 (Conditions),
+and this Section 12 survive any termination of this license.
+
+================================================================================
+13. GOVERNING LAW AND JURISDICTION
+================================================================================
+
+This license shall be governed by and construed in accordance with the laws
+of the jurisdiction in which the copyright holder is located, without regard
+to conflict-of-law provisions.
+
+Any dispute arising out of or in connection with this license shall be subject
+to the exclusive jurisdiction of the competent courts of that jurisdiction.
+
+================================================================================
+14. ENTIRE AGREEMENT
+================================================================================
+
+This license constitutes the entire agreement between you and the copyright
+holder with respect to the Software and supersedes all prior representations,
+understandings, or agreements relating to its subject matter.
+
+If any provision of this license is found unenforceable, the remaining
+provisions shall continue in full force and effect.
+
+The copyright holder's failure to enforce any provision of this license does
+not constitute a waiver of that provision or of the right to enforce it later.
+
+================================================================================
+
+Copyright (c) 2025–2026 R3zeProjects. All rights reserved.
+VAPI OSP — https://github.com/R3zeProjects/vapi_osp
+================================================================================
