@@ -1,0 +1,9 @@
+Vulkan SDK / Vulkan Loader - Apache License, Version 2.0
+
+This applies to Vulkan SDK and Loader components used by VAPI.
+VAPI does not modify Vulkan; it uses Vulkan as an external dependency.
+
+Full text of the Apache License, Version 2.0:
+  https://www.apache.org/licenses/LICENSE-2.0
+
+Vulkan/Khronos components are used under Apache License 2.0.
