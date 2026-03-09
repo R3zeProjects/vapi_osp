@@ -8,8 +8,9 @@
 #include "ui/events.hpp"
 #include "core/types.hpp"
 #include "core/interfaces/i_drawable.hpp"
-#include <vector>
 #include <memory>
+#include <unordered_map>
+#include <vector>
 
 namespace vapi::ui {
 
@@ -92,7 +93,9 @@ private:
     Emitter<FocusReason> m_focusGained;
     Emitter<> m_focusLost;
 
-    static Widget* s_focusWidget;
+    /// Per-window focus: map from focus root (topmost Widget in tree) to currently focused widget.
+    static std::unordered_map<Widget*, Widget*> s_focusByRoot;
+    [[nodiscard]] Widget* getFocusRoot();
 };
 
 } // namespace vapi::ui

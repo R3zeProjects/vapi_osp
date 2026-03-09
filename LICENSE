@@ -17,6 +17,13 @@ distribute modified versions without disclosing changes and the Creator's
 agreement; you may not present the software as your own without the Creator's
 agreement. Forgery or falsification of permission is prohibited and void.
 
+Previously issued Agreements and permissions — including commercial rights,
+static linking exceptions, and source code distribution grants — remain in
+full force and effect until explicitly revoked by the Creator in writing
+(Section 3B). You are responsible for reading and understanding the full
+license; ignorance of any provision does not relieve you of your obligations
+(see ACCEPTANCE in LICENSE_VAPI.txt).
+
 The software is distributed publicly only in the form of dynamic-link
 libraries (DLL). Source code may be distributed only with the Creator's
 permission and, where required, the recipient's written guarantees not to

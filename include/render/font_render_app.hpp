@@ -17,7 +17,9 @@
 #include "font/font_types.hpp"
 #include "font/font_draw_list.hpp"
 #include "platform/i_platform.hpp"
+#include "core/interfaces/i_cpu_bridge.hpp"
 #include <functional>
+#include <memory>
 #include <string>
 #include <string_view>
 
@@ -37,7 +39,7 @@ struct FrameInfo {
 /// App: window + Vulkan + UI text rendering (FontDrawList). Init and loop in one API.
 class FontRenderApp {
 public:
-    FontRenderApp() = default;
+    FontRenderApp();
     ~FontRenderApp();
 
     FontRenderApp(const FontRenderApp&) = delete;
@@ -58,6 +60,9 @@ public:
     /// Set font size in pixels (default 48).
     /// Must be called after init() and before addText() / run().
     void setFontSize(f32 pixelHeight);
+
+    /// Optional CPU services (thread pool, profiler). When set, may be used for async load/compile. Call after init() if needed.
+    void setCpuServices(ICpuServices* cpuServices);
 
     /// Add a text line (x, y = top-left of first line; color).
     void addText(f32 x, f32 y, std::string_view text, color4 color);
@@ -94,9 +99,14 @@ public:
     using MouseButtonCallback = std::function<void(WindowId, s32 button, s32 action, s32 mods)>;
     void setMouseButtonCallback(MouseButtonCallback cb);
 
+    /// Optional: called at the start of each frame (before beginFrame) with FrameContext. In onBeginFrame, gpuFrameData is nullptr.
+    void setOnBeginFrame(std::function<void(const FrameContext&)> cb);
+    /// Optional: called at the end of each frame (after endFrame) with FrameContext.
+    void setOnEndFrame(std::function<void(const FrameContext&)> cb);
+
 private:
     struct Impl;
-    Impl* m_impl{nullptr};
+    std::unique_ptr<Impl> m_impl;
 };
 
 } // namespace vapi

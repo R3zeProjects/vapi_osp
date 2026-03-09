@@ -33,6 +33,7 @@
 #include "ui/painter_interface.hpp"
 #include "core/types.hpp"
 #include "core/error.hpp"
+#include <vulkan/vulkan.h>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -43,6 +44,7 @@ class VkDeviceWrapper;
 class RenderContext;
 class IFontSource;
 struct FrameData;
+class ICpuServices;
 
 } // namespace vapi
 
@@ -79,6 +81,12 @@ public:
 
     /** Release all Vulkan resources. Safe to call when not initialized. */
     void shutdown();
+
+    /** Optional CPU services (thread pool, etc.). When set, shader load may use getOrCompileOnPool. Call after init() if needed. */
+    void setCpuServices(ICpuServices* cpuServices);
+
+    /** Optional pipeline cache for pipeline creation. Call after init() if needed. */
+    void setPipelineCache(VkPipelineCache cache);
 
     /** Set font source and size (can be changed between frames, not mid-frame).
      *  @param font        New font source; nullptr disables text rendering.

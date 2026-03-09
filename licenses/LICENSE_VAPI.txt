@@ -30,6 +30,11 @@ Creator's permission. Commercial use of the Software is welcome under an
 Agreement (Section 3); the Creator encourages commercial adoption and may
 grant Agreements free of charge for qualifying projects.
 
+You are responsible for reading and understanding this license in its
+entirety before using the Software. Ignorance of or failure to read any
+provision of this license does not relieve you of your obligations under it
+and does not constitute a defense against a claim of violation.
+
 ================================================================================
 1. DEFINITIONS
 ================================================================================
@@ -265,6 +270,24 @@ A document that is not sent from the Creator's designated email, or that
 lacks the verifiable data or signature when the Creator has published a
 signature scheme, does not constitute a valid Agreement. Licensees may
 confirm with the Creator via the repository or CONTACT.txt if in doubt.
+
+================================================================================
+3B. CONTINUITY OF PREVIOUSLY ISSUED AGREEMENTS
+================================================================================
+
+Any Agreement previously issued by the Creator under any prior version of
+this license or under any prior terms remains in full force and effect and
+continues to grant the rights specified therein, unless and until the Creator
+explicitly revokes or supersedes that Agreement in writing sent from the
+Creator's designated Official Channel. This includes, without limitation,
+Agreements granting Commercial Use rights (Section 3), permissions for
+static linking or distribution in forms other than DLL (exceptions to
+Section 1A(a)), and permissions for source code distribution (Section
+1A(b)–(c)). Updates, amendments, or new versions of this license do not
+by themselves invalidate, revoke, or alter any previously issued Agreement
+or permission. If the Creator revokes an Agreement or permission, the
+revocation takes effect upon written notice to the licensee and applies
+prospectively from the date specified in the notice.
 
 ================================================================================
 4. CONDITIONS FOR ALL USE

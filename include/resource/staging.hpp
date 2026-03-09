@@ -29,7 +29,10 @@ public:
     StagingManager() = default;
     ~StagingManager() = default;
 
-    [[nodiscard]] Result<void> init(const VkDeviceWrapper* device, VkCommandManager* commands);
+    /** When transferQueue and transferPool are both non-null, copy commands are submitted to the transfer queue instead of graphics. */
+    [[nodiscard]] Result<void> init(const VkDeviceWrapper* device, VkCommandManager* commands,
+                                    VkQueue transferQueue = VK_NULL_HANDLE,
+                                    VkCommandPool transferPool = VK_NULL_HANDLE);
     void shutdown();
 
     /// Upload data to GPU-only buffer via staging buffer. If dstSize is set, validates dstOffset + data.size() <= dstSize.
@@ -70,6 +73,20 @@ public:
     /** Submit the batch and wait. Call only after beginBatch() and one or more *Batch calls. */
     [[nodiscard]] Result<void> endBatchAndSubmit();
 
+    // ── Deferred upload (submit on flush) ─────────────────────────────
+    /** Start deferred uploads. Call uploadBufferDeferred/uploadImageDeferred, then flushStaging(). Data is available on GPU only after flushStaging(). */
+    [[nodiscard]] Result<void> startDeferred();
+    [[nodiscard]] Result<void> uploadBufferDeferred(VkBuffer dstBuffer, std::span<const u8> data, VkDeviceSize dstOffset = 0,
+                                                     std::optional<VkDeviceSize> dstSize = std::nullopt);
+    [[nodiscard]] Result<void> uploadBufferDeferred(BufferManager& bufferManager, BufferId dstId, std::span<const u8> data,
+                                                     VkDeviceSize dstOffset = 0);
+    [[nodiscard]] Result<void> uploadImageDeferred(VkImage dstImage, u32 width, u32 height, std::span<const u8> data,
+                                                    VkImageLayout finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    [[nodiscard]] Result<void> uploadImageDeferred(ImageManager& imageManager, ImageId dstId, std::span<const u8> data,
+                                                    VkImageLayout finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    /** Submit all deferred uploads and wait. Call after startDeferred() and one or more *Deferred calls. */
+    [[nodiscard]] Result<void> flushStaging();
+
 private:
     struct StagingBuffer {
         VkBuffer       buffer{VK_NULL_HANDLE};
@@ -77,11 +94,29 @@ private:
         VkDeviceSize   size{0};
     };
 
+    struct RingSlot {
+        StagingBuffer buf;
+        VkFence       fence{VK_NULL_HANDLE};
+    };
+
     [[nodiscard]] Result<StagingBuffer> createStagingBuffer(VkDeviceSize size);
     void destroyStagingBuffer(StagingBuffer& buf);
+    [[nodiscard]] Result<void> ensurePersistentStaging(VkDeviceSize minSize);
+    void destroyPersistentStaging();
+    [[nodiscard]] Result<RingSlot*> getRingSlot(VkDeviceSize minSize);
+    void destroyRingSlots();
 
     const VkDeviceWrapper* m_device{nullptr};
-    VkCommandManager*      m_commands{nullptr};
+    VkCommandManager*     m_commands{nullptr};
+    VkQueue                m_transferQueue{VK_NULL_HANDLE};
+    VkCommandPool          m_transferPool{VK_NULL_HANDLE};
+
+    StagingBuffer          m_persistentStaging;
+    static constexpr VkDeviceSize kPersistentStagingSize = 2ull * 1024 * 1024;
+
+    static constexpr u32    kRingSlots = 4;
+    std::vector<RingSlot>  m_ringSlots;
+    u32                     m_ringNextIndex{0};
 
     bool                           m_batchActive{false};
     VkCommandBuffer                m_batchCmd{VK_NULL_HANDLE};

@@ -69,63 +69,7 @@ namespace file_errors = errors::file;
 /** @brief Returns a single human-readable description for the given error code.
  *  @param e Error code (e.g. from Result::error()).
  *  @return Non-null string view; never throws. */
-[[nodiscard]] inline std::string_view errorMessage(Error e) noexcept {
-    using namespace errors;
-    if (e.ok()) return "Success";
-    switch (e.value()) {
-        case 0x1001: return "Initialization failed";
-        case 0x1002: return "Not initialized";
-        case 0x1003: return "Invalid handle";
-        case 0x1004: return "Invalid ID";
-        case 0x1005: return "Limit reached";
-        case 0x1006: return "ID overflow";
-        case 0x1007: return "Timeout";
-        case 0x1008: return "Not ready";
-        case 0x1009: return "Out of memory";
-        case 0x100A: return "Invalid argument";
-        case 0x100B: return "Not supported";
-        case 0x100C: return "Already initialized";
-        case 0x100D: return "Not implemented";
-        case 0x100E: return "Create window failed";
-        case 0x100F: return "I/O error";
-        case 0x1010: return "Serialization failed";
-        case 0x2001: return "File not found";
-        case 0x2002: return "File open failed";
-        case 0x2003: return "File read failed";
-        case 0x2004: return "File write failed";
-        case 0x2005: return "Permission denied";
-        case 0x2006: return "Not a directory";
-        case 0x4001: return "Vulkan operation failed";
-        case 0x4002: return "Device not found";
-        case 0x4003: return "No suitable queue";
-        case 0x4004: return "Surface creation failed";
-        case 0x4005: return "Swapchain creation failed";
-        case 0x4006: return "Swapchain out of date";
-        case 0x4007: return "Image acquire failed";
-        case 0x4008: return "Present failed";
-        case 0x4009: return "Fence timeout";
-        case 0x400A: return "Command pool creation failed";
-        case 0x400B: return "Command buffer allocation failed";
-        case 0x400C: return "Allocator creation failed";
-        case 0x400D: return "Allocation failed";
-        case 0x400E: return "Map failed";
-        case 0x400F: return "Validation layer not available";
-        case 0x4010: return "Extension not available";
-        case 0x4011: return "Shader module creation failed";
-        case 0x4012: return "Pipeline creation failed";
-        case 0x4013: return "Render pass creation failed";
-        case 0x4014: return "Framebuffer creation failed";
-        case 0x4015: return "Descriptor set layout failed";
-        case 0x4016: return "Descriptor pool failed";
-        case 0x4017: return "Buffer creation failed";
-        case 0x4018: return "Image creation failed";
-        case 0x4019: return "Sampler creation failed";
-        case 0x401A: return "Semaphore creation failed";
-        case 0x401B: return "Fence creation failed";
-        case 0x401C: return "Query pool creation failed";
-        default:     return "Unknown error";
-    }
-}
+[[nodiscard]] std::string_view errorMessage(Error e) noexcept;
 
 /** @brief Format error with context for logging (e.g. "FontRenderApp::init: Initialization failed").
  *  @param e Error code.

@@ -42,6 +42,8 @@ public:
     [[nodiscard]] Result<VkCommandBuffer> beginSingleTime(VkDevice device);
     /** Submit single-time buffer and wait; then free. cmd must be from beginSingleTime(). */
     [[nodiscard]] Result<void> endSingleTime(VkDevice device, VkQueue queue, VkCommandBuffer cmd);
+    /** Submit single-time buffer with fence (no wait); then free. Caller must wait/reset fence. */
+    [[nodiscard]] Result<void> endSingleTimeWithFence(VkDevice device, VkQueue queue, VkCommandBuffer cmd, VkFence fence);
 
     [[nodiscard]] VkCommandPool pool(u32 frameIndex) const { return m_pools[frameIndex]; }
 

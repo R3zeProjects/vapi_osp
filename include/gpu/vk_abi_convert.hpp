@@ -29,10 +29,13 @@ namespace vapi {
 
 [[nodiscard]] inline VkShaderStageFlagBits toVkShaderStage(ShaderStage s) {
     switch (s) {
-        case ShaderStage::Vertex:   return VK_SHADER_STAGE_VERTEX_BIT;
-        case ShaderStage::Fragment: return VK_SHADER_STAGE_FRAGMENT_BIT;
-        case ShaderStage::Compute:  return VK_SHADER_STAGE_COMPUTE_BIT;
-        default:                    return VK_SHADER_STAGE_VERTEX_BIT;
+        case ShaderStage::Vertex:      return VK_SHADER_STAGE_VERTEX_BIT;
+        case ShaderStage::Fragment:    return VK_SHADER_STAGE_FRAGMENT_BIT;
+        case ShaderStage::Compute:     return VK_SHADER_STAGE_COMPUTE_BIT;
+        case ShaderStage::Geometry:    return VK_SHADER_STAGE_GEOMETRY_BIT;
+        case ShaderStage::TessControl: return VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT;
+        case ShaderStage::TessEval:    return VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT;
+        default:                        return VK_SHADER_STAGE_VERTEX_BIT;
     }
 }
 

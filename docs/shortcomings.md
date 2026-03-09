@@ -41,6 +41,18 @@ Part of the interfaces are **intentionally** defined without full implementation
 - **Краткий справочник:** добавлен **docs/quick_reference.md** — таблица основных классов и методов с отсылками к detail_docs.
 - **Корневой include:** в **vapi.hpp** явно указано: для рендера — `render/render.hpp`, для ресурсов — `resource/resource.hpp`.
 - **Именование платформы:** в документации и quick reference используется **IPlatform**; **IPlatformBackend** упоминается как алиас для совместимости.
+- **Frame hooks и контекст кадра:** в **RunUILoopOptions** добавлены опциональные `onBeginFrame(FrameContext)`, `onFrameAcquired(FrameContext)` (после acquire кадра, с заполненным gpuFrameData), `onEndFrame(FrameContext)` и опциональный **IAppLogic***; в **runUILoop** передаётся **FrameContext**. В **onBeginFrame** кадр GPU ещё не получен — `gpuFrameData == nullptr`; в **onFrameAcquired** и **onEndFrame** контекст заполнен (см. **run_ui_loop.hpp**, **i_cpu_bridge.hpp**).
+- **FrameContext:** единая структура кадра в **core/interfaces/i_cpu_bridge.hpp**; передаётся в колбэки и в **IAppLogic::onBeginFrame(FrameContext)** / **onEndFrame(FrameContext)** (при реализации интерфейса).
+- **Опциональный ICpuServices:** в **RunUILoopOptions** и в **FontRenderApp::setCpuServices()**; передаётся в **VulkanUiPainter::setCpuServices()** из runUILoop; используется для **getOrCompileOnPool** при загрузке шейдеров (FileShaderCache + пул потоков), когда задан.
+- **Ring staging:** в **StagingManager** реализован ring buffer слотов с fence; переиспользование буферов без смены API **uploadBuffer** / **uploadImage** / batch (см. **resource/staging.hpp**, **staging.cpp**).
+- **Опциональная transfer-очередь:** **StagingManager::init()** принимает опциональные `transferQueue` и `transferPool`; **VulkanUiPainter** и **FontRenderApp** создают пул команд для transfer-очереди (если устройство её предоставляет) и передают в staging для разгрузки graphics-очереди.
+- **Общий строитель бэкенда:** **createAndInitVulkanBackend()** в **render/run_context.hpp** используется в **runUILoop** и **FontRenderApp** для единообразной инициализации Vulkan backend.
+
+- **Асинхронная загрузка ассетов:** **IAssetLoader** и **createSimpleAssetLoader()** (core/asset_loader.hpp) дают загрузку файла в потоке с колбэком; для текстур в колбэке выполните createImage + StagingManager::uploadImage на главном потоке (см. Recommendations п. 4).
+
+### Отложено (без изменений в текущей версии)
+
+- **Overlap CPU/GPU** (подготовка кадра N+1 пока рендерится N): добавлен колбэк **onPrepareNextFrame** в RunUILoopOptions; полная модель с двойным буфером данных кадра — по желанию в приложении.
 
 ## Recommendations
 

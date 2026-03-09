@@ -31,27 +31,6 @@ namespace vapi
     using s32 = std::int32_t;
     using s64 = std::int64_t;
 
-    using u8fast  = std::uint_fast8_t;
-    using u16fast = std::uint_fast16_t;
-    using u32fast = std::uint_fast32_t;
-    using u64fast = std::uint_fast64_t;
-    using s8fast  = std::int_fast8_t;
-    using s16fast = std::int_fast16_t;
-    using s32fast = std::int_fast32_t;
-    using s64fast = std::int_fast64_t;
-
-    using u8least  = std::uint_least8_t;
-    using u16least = std::uint_least16_t;
-    using u32least = std::uint_least32_t;
-    using u64least = std::uint_least64_t;
-    using s8least  = std::int_least8_t;
-    using s16least = std::int_least16_t;
-    using s32least = std::int_least32_t;
-    using s64least = std::int_least64_t;
-
-    using smax = std::intmax_t;
-    using umax = std::uintmax_t;
-
     using f32  = float;
     using f64  = double;
     using fext = long double;
@@ -60,17 +39,6 @@ namespace vapi
     using uptr  = std::uintptr_t;
     using usize = std::size_t;
     using ssize = sptr;
-
-    using ptr8   = u8*;
-    using ptr16  = u16*;
-    using ptr32  = u32*;
-    using ptr64  = u64*;
-    using cptr8  = const u8*;
-    using cptr16 = const u16*;
-    using cptr32 = const u32*;
-    using cptr64 = const u64*;
-    using voidptr  = void*;
-    using cvoidptr = const void*;
 
     using WindowId = u32;
 
@@ -168,7 +136,7 @@ namespace vapi
 
         SizeElement() = default;
         SizeElement(const SizeElement&) = default;
-        constexpr explicit SizeElement(u32 w, u32 h): width(w), height(h) {}
+        constexpr SizeElement(u32 w, u32 h): width(w), height(h) {}
 
         SizeElement& operator=(const SizeElement& other) = default;
 
@@ -505,41 +473,6 @@ namespace vapi
         std::uintptr_t callAddress{0};
     };
 
-    namespace detail {
-        constexpr unsigned obf_key = 0x9Au;
-        template<std::size_t N>
-        constexpr std::array<char, N> obf_xor(const char (&s)[N], unsigned key) {
-            std::array<char, N> r{};
-            for (std::size_t i = 0; i < N - 1; ++i)
-                r[i] = static_cast<char>(static_cast<unsigned char>(s[i]) ^ (key + static_cast<unsigned>(i)));
-            r[N - 1] = '\0';
-            return r;
-        }
-    }
-
-    template<std::size_t N>
-    struct ObfString {
-        std::array<char, N> data;
-        constexpr ObfString(const std::array<char, N>& d) : data(d) {}
-        std::string decode() const {
-            std::string out;
-            out.reserve(N - 1);
-            for (std::size_t i = 0; i < N - 1; ++i)
-                out += static_cast<char>(static_cast<unsigned char>(data[i]) ^ (detail::obf_key + static_cast<unsigned>(i)));
-            return out;
-        }
-    };
-
-    struct ObfPassthrough {
-        std::string s;
-        explicit ObfPassthrough(const char* p) : s(p) {}
-        std::string decode() const { return s; }
-    };
-
-    inline constexpr std::string_view author =
-        "bcc2eecba5ed7cb5bfd489f52db02fe344297ec4de521e73b2fab09abc5fe896"
-        "92998ac284d6a441d51669bb06cd8dea5671810fb1973bc7fa8f954d32053545";
-
-}
+} // namespace vapi
 
 #endif

@@ -4,8 +4,9 @@
 #include "core/error.hpp"
 #include "resource/resource_types.hpp"
 #include <vulkan/vulkan.h>
-#include <unordered_map>
 #include <mutex>
+#include <unordered_map>
+#include <vector>
 
 namespace vapi {
 
@@ -71,6 +72,7 @@ private:
     VkDeviceSize          m_maxBufferSize{256ull * 1024 * 1024};
     std::unordered_map<BufferId, GpuBuffer> m_buffers;
     BufferId m_nextId{1};
+    std::vector<BufferId> m_freeIds;
     mutable std::mutex m_mutex;
 };
 

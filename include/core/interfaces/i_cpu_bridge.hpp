@@ -11,6 +11,17 @@
 namespace vapi {
 
 /**
+ * Per-frame context: CPU frame index, delta time, GPU frame index.
+ * Passed to onBeginFrame/onEndFrame so app logic can align with frame boundaries.
+ */
+struct FrameContext {
+    u64   cpuFrameIndex{0};
+    f64   dtSeconds{0.0};
+    u32   gpuFrameIndex{0};
+    void* gpuFrameData{nullptr};  ///< e.g. current VkCommandBuffer or FrameData* when available
+};
+
+/**
  * Facade for CPU-side services (thread pool, allocator, profiler).
  * Pass ICpuServices* or ICpuServices& to modules that need CPU tools without depending on concrete implementations.
  * Any getter may return nullptr if the service is not available.
@@ -32,6 +43,8 @@ public:
 /**
  * Application logic callbacks driven by the main loop (CPU side).
  * Implement this in your application; the frame driver or main loop calls these each frame.
+ * Override onBeginFrame(FrameContext) / onEndFrame(FrameContext) to receive full frame context;
+ * default implementations call the no-arg overloads for backward compatibility.
  */
 class IAppLogic {
 public:
@@ -45,6 +58,13 @@ public:
 
     /** Called at the end of the frame (e.g. after render end / present). */
     virtual void onEndFrame() = 0;
+
+    /** Called at the start of the frame with context. Default calls onBeginFrame().
+     *  Note: gpuFrameData is nullptr in this callback (frame not yet acquired). */
+    virtual void onBeginFrame(const FrameContext& fctx) { (void)fctx; onBeginFrame(); }
+
+    /** Called at the end of the frame with context. Default calls onEndFrame(). */
+    virtual void onEndFrame(const FrameContext& fctx) { (void)fctx; onEndFrame(); }
 };
 
 /**

@@ -8,14 +8,18 @@
 
 #include "core/types.hpp"
 #include "core/interfaces/i_log.hpp"
+#include <cstdint>
+#include <cstdio>
+#include <memory>
+#include <mutex>
+#include <sstream>
 #include <string>
 #include <string_view>
 #include <source_location>
-#include <memory>
+#include <type_traits>
 #include <unordered_map>
 #include <vector>
-#include <mutex>
-#include <cstdint>
+#include <deque>
 
 namespace vapi {
 
@@ -37,8 +41,24 @@ public:
     void flush() override;
 private:
     std::string m_filepath;
-    void* m_file{nullptr};
+    std::FILE* m_file{nullptr};
     std::mutex m_mutex;
+};
+
+/** Stores the last N log entries in a ring buffer for debugging/inspection. */
+class RingBufferSink : public ILogSink {
+public:
+    explicit RingBufferSink(std::size_t capacity = 256);
+    void write(const LogEntry& entry) override;
+    void flush() override;
+    /** Returns a copy of the last N entries (oldest first). */
+    std::vector<LogEntry> getEntries() const;
+    std::size_t capacity() const { return m_capacity; }
+    std::size_t size() const;
+private:
+    std::size_t m_capacity;
+    std::deque<LogEntry> m_ring;
+    mutable std::mutex m_mutex;
 };
 
 class Logger {
@@ -83,6 +103,59 @@ inline void logError(std::string_view cat, std::string_view msg,
 inline void logFatal(std::string_view cat, std::string_view msg,
                     std::source_location loc = std::source_location::current()) {
     Logger::instance().log(LogLevel::Fatal, cat, msg, loc);
+}
+
+namespace detail {
+    inline std::string formatOnePlaceholder(std::string_view fmt, std::string argStr) {
+        const std::string placeholder("{}");
+        auto pos = fmt.find(placeholder);
+        if (pos == std::string_view::npos) return std::string(fmt);
+        return std::string(fmt.substr(0, pos)) + argStr + std::string(fmt.substr(pos + placeholder.size()));
+    }
+    template<typename T>
+    std::string formatOne(std::string_view fmt, const T& arg) {
+        std::string argStr;
+        if constexpr (std::is_arithmetic_v<T>) {
+            argStr = std::to_string(arg);
+        } else if constexpr (std::is_same_v<T, std::string_view>) {
+            argStr = std::string(arg);
+        } else if constexpr (std::is_same_v<T, std::string>) {
+            argStr = arg;
+        } else if constexpr (std::is_convertible_v<T, std::string_view>) {
+            argStr = std::string(std::string_view(arg));
+        } else {
+            std::ostringstream os;
+            os << arg;
+            argStr = os.str();
+        }
+        return formatOnePlaceholder(fmt, std::move(argStr));
+    }
+}
+
+template<typename T>
+inline void logDebug(std::string_view cat, std::string_view fmt, const T& arg,
+                    std::source_location loc = std::source_location::current()) {
+    Logger::instance().log(LogLevel::Debug, cat, detail::formatOne(fmt, arg), loc);
+}
+template<typename T>
+inline void logInfo(std::string_view cat, std::string_view fmt, const T& arg,
+                   std::source_location loc = std::source_location::current()) {
+    Logger::instance().log(LogLevel::Info, cat, detail::formatOne(fmt, arg), loc);
+}
+template<typename T>
+inline void logWarn(std::string_view cat, std::string_view fmt, const T& arg,
+                   std::source_location loc = std::source_location::current()) {
+    Logger::instance().log(LogLevel::Warning, cat, detail::formatOne(fmt, arg), loc);
+}
+template<typename T>
+inline void logError(std::string_view cat, std::string_view fmt, const T& arg,
+                    std::source_location loc = std::source_location::current()) {
+    Logger::instance().log(LogLevel::Error, cat, detail::formatOne(fmt, arg), loc);
+}
+template<typename T>
+inline void logFatal(std::string_view cat, std::string_view fmt, const T& arg,
+                    std::source_location loc = std::source_location::current()) {
+    Logger::instance().log(LogLevel::Fatal, cat, detail::formatOne(fmt, arg), loc);
 }
 
 #ifdef VAPI_LOG_DETAIL

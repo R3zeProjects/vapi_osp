@@ -33,6 +33,9 @@ enum class ShaderStage : u8 {
     Vertex = 0,
     Fragment,
     Compute,
+    Geometry,
+    TessControl,
+    TessEval,
 };
 
 /** Combined stage flags (bitmask). */

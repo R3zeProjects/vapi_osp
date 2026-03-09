@@ -8,6 +8,7 @@
 #define VAPI_UI_RUN_UI_LOOP_HPP
 
 #include "core/types.hpp"
+#include "core/interfaces/i_cpu_bridge.hpp"
 #include <functional>
 #include <string_view>
 
@@ -34,6 +35,31 @@ struct RunUILoopOptions {
 
     /** Called once when the window is about to close (before exiting the loop). Use e.g. to save state. */
     std::function<void(vapi::WindowId)> onClose;
+
+    /** Called at the start of each frame (before beginFrame), with frame context (cpu frame index, dt, gpu frame index).
+     *  In this callback gpuFrameData is always nullptr (GPU frame not yet acquired). */
+    std::function<void(const vapi::FrameContext&)> onBeginFrame;
+
+    /** Called after beginFrame() with full FrameContext (including gpuFrameData). Use when you need the current command buffer / FrameData at frame start. */
+    std::function<void(const vapi::FrameContext&)> onFrameAcquired;
+
+    /** Called at the end of each frame (after endFrame), with frame context. */
+    std::function<void(const vapi::FrameContext&)> onEndFrame;
+
+    /** If non-null, onBeginFrame/update(dt)/onEndFrame are called each frame in addition to the callbacks above. */
+    vapi::IAppLogic* appLogic{nullptr};
+
+    /** Optional CPU services (thread pool, profiler). When set, may be used for async load/compile. */
+    vapi::ICpuServices* cpuServices{nullptr};
+
+    /** Optional frame driver for dt and frame index. When set, runUILoop uses it instead of internal timing. Set time source on the driver (e.g. platform->getTimeSeconds) before calling runUILoop. */
+    vapi::ICpuFrameDriver* frameDriver{nullptr};
+
+    /** Optional: prepare data for next frame (double-buffer model). Called at start of iteration; use for overlap CPU/GPU. */
+    std::function<void(const vapi::FrameContext&)> onPrepareNextFrame;
+
+    /** Optional path to pipeline cache file. When non-empty, pipeline cache is loaded and used for pipeline creation. */
+    std::string_view pipelineCachePath;
 };
 
 /**

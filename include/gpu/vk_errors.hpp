@@ -3,6 +3,9 @@
 
 #include "core/types.hpp"
 #include "core/error.hpp"
+#include "core/logger.hpp"
+#include <optional>
+#include <string>
 #include <vulkan/vulkan.h>
 
 namespace vapi {
@@ -59,8 +62,16 @@ namespace gpu_errors {
     }
 }
 
+/** Shared VkResult check: returns error if not success/suboptimal; optionally logs when logIfError. */
+[[nodiscard]] inline std::optional<Error> vkCheckResult(VkResult vr, bool logIfError = false) {
+    if (vr == VK_SUCCESS || vr == VK_SUBOPTIMAL_KHR) return std::nullopt;
+    Error e = toError(vr);
+    if (logIfError) logError("Vulkan", "Vulkan error " + std::to_string(static_cast<int>(vr)));
+    return e;
+}
+
 #define VK_CHECK(expr) \
-    do { VkResult _vr = (expr); if (_vr != VK_SUCCESS && _vr != VK_SUBOPTIMAL_KHR) return std::unexpected(toError(_vr)); } while(0)
+    do { VkResult _vr = (expr); auto _vkErr = vapi::vkCheckResult(_vr); if (_vkErr) return std::unexpected(*_vkErr); } while(0)
 
 #define VK_CHECK_BOOL(expr) \
     do { VkResult _vr = (expr); if (_vr != VK_SUCCESS) return false; } while(0)

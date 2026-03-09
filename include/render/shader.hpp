@@ -4,6 +4,7 @@
 
 #include "core/types.hpp"
 #include "core/error.hpp"
+#include "core/interfaces/i_gpu_abi.hpp"
 #include <vulkan/vulkan.h>
 #include <string>
 #include <vector>
@@ -21,9 +22,7 @@ struct LoadShaderOptions {
     usize maxSpirvBytes{kDefaultMaxSpirvBytes};
 };
 
-enum class ShaderStage : u8 {
-    Vertex, Fragment, Compute, Geometry, TessControl, TessEval,
-};
+/** ShaderStage is defined in core/interfaces/i_gpu_abi.hpp (Vertex, Fragment, Compute, Geometry, TessControl, TessEval). */
 
 /** RAII wrapper for VkShaderModule. */
 class ShaderModule {

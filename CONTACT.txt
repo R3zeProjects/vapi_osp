@@ -41,7 +41,7 @@ The Creator must send the Agreement Document from this email. Only documents
 sent from this address constitute valid commercial permission.
 
   Email (commercial licensing — Agreement Document must be sent from here):
-    [ Fill in the Creator's official email, e.g. license@example.com ]
+    r3ze.projects@gmail.com
 
   Repository / GitHub (inquiries only; Agreement must still be sent from email):
     https://github.com/R3zeProjects/vapi_osp
@@ -55,10 +55,10 @@ signed so that licensees can verify authenticity. See licenses/CREATOR_SIGNING.m
 for how to create a key and sign documents.
 
   PGP public key:
-    [ Paste the armored public key block here, or add path, e.g.:
-      licenses/CREATOR_PGP_PUBLIC_KEY.asc ]
+    licenses/CREATOR_PGP_PUBLIC_KEY.asc
+
   Key ID / fingerprint:
-    [ e.g. ABCD1234EF567890 or full fingerprint ]
+    00EB 50C7 630F 0980 B558  261E 1C87 4D72 79DD 5D53
 
 --------------------------------------------------------------------------------
 VERIFICATION BY LICENSEE

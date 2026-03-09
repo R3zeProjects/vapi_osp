@@ -56,9 +56,15 @@ public:
     void destroyAll();
 
 private:
+    Result<VkDescriptorSet> allocateSetFromPool(VkDescriptorSetLayout layout, VkDescriptorPool pool);
+    Result<void> createOnePool();
+    [[nodiscard]] VkDescriptorSetLayout getLayoutUnlocked(DescLayoutId id) const;
+
     const VkDeviceWrapper* m_device{nullptr};
     std::unordered_map<DescLayoutId, VkDescriptorSetLayout> m_layouts;
-    VkDescriptorPool m_pool{VK_NULL_HANDLE};
+    std::vector<VkDescriptorPool> m_pools;
+    std::vector<VkDescriptorPoolSize> m_poolSizes;
+    u32 m_maxSets{0};
     DescLayoutId m_nextLayoutId{1};
     mutable std::mutex m_mutex;
 };

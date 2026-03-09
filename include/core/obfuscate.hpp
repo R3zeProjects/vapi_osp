@@ -1,7 +1,7 @@
 #ifndef VAPI_CORE_OBFUSCATE_HPP
 #define VAPI_CORE_OBFUSCATE_HPP
 
-#include "core/types.hpp"
+#include "core/build_info.hpp"
 
 #define VAPI_OBF_LIT(s) (::vapi::ObfString<sizeof(s)>(::vapi::detail::obf_xor(s, ::vapi::detail::obf_key)))
 
