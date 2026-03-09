@@ -1,0 +1,77 @@
+================================================================================
+VAPI OSP — OFFICIAL CONTACT FOR COMMERCIAL LICENSING
+================================================================================
+
+Commercial use of VAPI OSP is permitted only with an Agreement from the
+Creator. A valid Agreement is an Agreement Document (see licenses/LICENSE_VAPI.txt,
+Section 3A) sent from the Creator's designated email below. The document must
+contain the required data and, if the Creator uses a signature scheme, must be
+signed so that licensees can verify it. How to create and use a signature:
+see licenses/CREATOR_SIGNING.md.
+
+--------------------------------------------------------------------------------
+WHEN REQUESTING COMMERCIAL USE (what to indicate)
+--------------------------------------------------------------------------------
+
+When contacting the Creator to request an Agreement for commercial use, please
+state clearly:
+
+  — Purpose (goal) of use: why and for what you need the Software (e.g. to
+    build an internal tool, to ship a desktop application, to run a
+    commercial service). Implementation or product details are not required—
+    only the intended goal of use.
+
+  — Type of use: in what capacity the Software will be used (e.g. as part of
+    a product you distribute, internal use only, integration into a
+    customer-facing service).
+
+  — Term (duration): the period for which you need the Agreement (e.g. one
+    year, indefinite until terminated, specific end date).
+
+This information allows the Creator to prepare an Agreement Document with the
+appropriate scope and conditions. The Creator does not need to know the
+technical or business implementation details of your product—only the purpose
+and type of use.
+
+--------------------------------------------------------------------------------
+OFFICIAL CHANNEL — EMAIL (for sending Agreement Documents)
+--------------------------------------------------------------------------------
+
+The Creator must send the Agreement Document from this email. Only documents
+sent from this address constitute valid commercial permission.
+
+  Email (commercial licensing — Agreement Document must be sent from here):
+    [ Fill in the Creator's official email, e.g. license@example.com ]
+
+  Repository / GitHub (inquiries only; Agreement must still be sent from email):
+    https://github.com/R3zeProjects/vapi_osp
+
+--------------------------------------------------------------------------------
+SIGNATURE VERIFICATION (optional but recommended)
+--------------------------------------------------------------------------------
+
+If the Creator publishes a PGP public key, the Agreement Document can be
+signed so that licensees can verify authenticity. See licenses/CREATOR_SIGNING.md
+for how to create a key and sign documents.
+
+  PGP public key:
+    [ Paste the armored public key block here, or add path, e.g.:
+      licenses/CREATOR_PGP_PUBLIC_KEY.asc ]
+  Key ID / fingerprint:
+    [ e.g. ABCD1234EF567890 or full fingerprint ]
+
+--------------------------------------------------------------------------------
+VERIFICATION BY LICENSEE
+--------------------------------------------------------------------------------
+
+To verify that a commercial permission is genuine:
+  — The Agreement Document must be sent from the email above.
+  — The document must contain the data described in the license (Section 3A).
+  — If the Creator publishes a PGP key, verify the document signature with:
+    gpg --verify <signed-file> [original-file]
+  — In case of doubt, contact the Creator via the repository or the email above.
+
+Forgery or falsification of permission is prohibited and void (see
+licenses/LICENSE_VAPI.txt, Section 3 and 4).
+
+================================================================================

@@ -1,6 +1,6 @@
 # Release process
 
-- **Version:** Set in `CMakeLists.txt` (`project(vapi_osp VERSION x.y.z)`). Update on release. **Current API version:** 0.0.1-alpha. Version scheme: [VERSIONING.md](VERSIONING.md).
+- **Version:** Set in `CMakeLists.txt` (`project(vapi_osp VERSION x.y.z)`). Update on release. **Current API version:** 0.0.1-alpha (first alpha). Version scheme: [VERSIONING.md](VERSIONING.md).
 - **Before 1.0.0:** Incompatible changes may occur without a major version bump.
 - **From 1.0.0:** Follow [Semantic Versioning](https://semver.org/): major = incompatible API changes, minor = new backward-compatible functionality, patch = fixes.
 

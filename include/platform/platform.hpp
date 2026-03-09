@@ -16,6 +16,7 @@ using IPlatformBackend = IPlatform;
 /** Available platform backends. Add new value and case in platform_factory.cpp to plug another implementation. */
 enum class PlatformKind : unsigned {
     Glfw = 0,
+    Headless,  ///< No real window; for CI and headless tests (createWindow returns NotSupported).
 };
 
 /** Create platform backend (single owner). kind selects implementation; default Glfw. Link vapi_platform for Glfw. */

@@ -43,6 +43,12 @@ public:
 /// Create a simple echo backend (for tests). Replace with your LLM/API backend.
 IAssistantBackend* createEchoBackend();
 
+/** Callback signature: (prompt, systemContext, replyFn). Implement your HTTP/LLM call and call reply() with the response. */
+using AssistantSubmitFn = std::function<void(std::string_view prompt, std::string_view systemContext, AssistantReplyFn reply)>;
+
+/// Create a backend that delegates to a custom callback (e.g. HTTP request to your API). Caller owns the returned pointer.
+IAssistantBackend* createCallbackBackend(AssistantSubmitFn submitFn);
+
 } // namespace vapi::ui
 
 #endif // VAPI_UI_ASSISTANT_BACKEND_HPP

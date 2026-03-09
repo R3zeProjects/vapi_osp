@@ -162,4 +162,4 @@
 
 - По готовности к продакшену (9) — Qt остаётся лидером (10) по широте платформ и годам в продакшене. По удобству входа (9) — ImGui (9) сохраняет преимущество минимального порога без Vulkan/SPIR-V.
 
-Рейтинг после внедрения плана: **vapi_osp** — современный, потребляемый как библиотека (install/find_package), с persistent runtime, типизированным API и полной repo/product зрелостью (CI, LICENSE, CHANGELOG, presets, release policy).
+Рейтинг после внедрения плана: **vapi_osp** — современный, потребляемый как библиотека (install/find_package), с persistent runtime, типизированным API и полной repo/product зрелостью (CI, LICENSE, presets, release policy).

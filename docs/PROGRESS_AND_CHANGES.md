@@ -49,9 +49,8 @@ This document records **recent documentation and repository updates** made to al
 **What was done**
 
 - A single file **`RELEASE_NOTES.md`** at the repository root was created (and later extended) to hold:
-  - **Version logic:** See [VERSIONING.md](VERSIONING.md). Scheme: `0.` = released, `0.0` = beta, `0.0.1` = alpha, `b` = patch. **Current API version:** 0.0.1-alpha (alpha); in CMake: 0.0.1. Sequence: 0.0.1-alpha (current) → 0.0.1b1 (patch) → 0.1.0 (first release) → 0.2.0.
-  - **Release 0.0.1b1:** Short description and publication text for the previous alpha patch 1 (core, platform, GPU, font, initial docs).
-  - **Current API version 0.0.1-alpha:** Alpha; set in `CMakeLists.txt` as 0.0.1.
+  - **Version logic:** See [VERSIONING.md](VERSIONING.md). Scheme: `0.` = released, `0.0` = beta, `0.0.1` = alpha, `b` = patch. **Current API version:** 0.0.1-alpha (first alpha); in CMake: 0.0.1. Sequence: 0.0.1-alpha (first alpha) → 0.0.1b1 (patch) → 0.1.0 (first stable).
+  - **Current API version 0.0.1-alpha:** First alpha; set in `CMakeLists.txt` as 0.0.1.
 
 **Purpose**
 
@@ -60,7 +59,7 @@ This document records **recent documentation and repository updates** made to al
 
 **File created/updated**
 
-- `RELEASE_NOTES.md`: structure with version logic (0.0.1b1 → 0.1.0 current → 0.2.0 planned), sections for 0.0.1b1, current 0.1.0, and planned 0.2.0, including Russian-language announcement text and a comparison table.
+- `RELEASE_NOTES.md`: version logic and current 0.0.1-alpha (first alpha), including announcement text.
 
 ---
 
@@ -71,7 +70,7 @@ This document records **recent documentation and repository updates** made to al
 - This file was added to the documentation to describe, in English and in detail:
   - The author identity change (SHA3-512 of `r3ze.projects@gmail.com`).
   - The `.gitignore` update for `oldvapi/`.
-  - The creation and content of `RELEASE_NOTES.md` (0.0.1b1, current 0.1.0, planned 0.2.0).
+  - The creation and content of `RELEASE_NOTES.md` (current 0.0.1-alpha, first alpha).
 
 **Purpose**
 
@@ -85,8 +84,7 @@ This document records **recent documentation and repository updates** made to al
 |------|----------|--------|
 | Author constant | `include/core/types.hpp` | Set to SHA3-512(`r3ze.projects@gmail.com`) hex value |
 | Ignore path | `.gitignore` | Added `oldvapi/` |
-| Release 0.0.1b1 | `RELEASE_NOTES.md` | Added section with short description and publication text |
-| Current API version 0.0.1-alpha | `CMakeLists.txt`, `RELEASE_NOTES.md`, `docs/VERSIONING.md` | Explicit “current version” section; current = 0.0.1-alpha (alpha); CMake 0.0.1 |
+| Current API version 0.0.1-alpha (first alpha) | `CMakeLists.txt`, `RELEASE_NOTES.md`, `docs/VERSIONING.md` | Explicit “current version” section; current = 0.0.1-alpha (first alpha); CMake 0.0.1 |
 | Progress log | `docs/PROGRESS_AND_CHANGES.md` | This document (detailed English description of the above) |
 
 ---

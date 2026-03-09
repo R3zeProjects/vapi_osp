@@ -92,7 +92,9 @@ Link only the targets you actually use. Headers are relative to the VAPI repo `i
 
 Minimal “one window with text”: one target **`vapi_font_render`** and one header **`render/font_render_app.hpp`**.
 
-For UI rendering via Vulkan use **`vapi_ui_vulkan`** (target) and **`ui/vulkan_ui_painter.hpp`** — see section 11 below.
+For UI rendering via Vulkan use **`vapi_ui_vulkan`** (target) and **`ui/vulkan_ui_painter.hpp`** or **`ui/run_ui_loop.hpp`** for the full loop — see section 11 below.
+
+**Pipeline cache (optional):** For faster startup, use `PipelineCache` (see [pipeline_cache.md](pipeline_cache.md)): load from file in init, pass `cache.handle()` to `GraphicsPipelineBuilder::build(device, layout, pipelineCache)`, and save on shutdown.
 
 ---
 

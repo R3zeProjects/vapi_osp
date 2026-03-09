@@ -5,7 +5,7 @@
 **Быстрый старт:** [Быстрый старт (quick_start.md)](quick_start.md) — сборка, первый запуск и минимальный код на одной странице. [Примеры использования (usage_examples.md)](usage_examples.md) — готовые фрагменты кода.
 
 - **Установка в систему:** после сборки выполните `cmake --install build`; затем в проекте используйте `find_package(vapi_osp)` и цели `vapi_osp::vapi_*`. См. [integration.md](integration.md).
-- **Схема версий:** [VERSIONING.md](VERSIONING.md) (0. = релиз, 0.0 = бета, 0.0.1 = альфа, b = правка). **Текущая версия API:** 0.0.1-alpha.
+- **Схема версий:** [VERSIONING.md](VERSIONING.md) (0. = релиз, 0.0 = бета, 0.0.1 = альфа, b = правка). **Текущая версия API:** 0.0.1-alpha (первая альфа).
 - **Запуск тестов:** [testing.md](testing.md). Тесты собираются при `VAPI_BUILD_TESTS=ON`.
 - **Поддерживаемые конфигурации и релиз:** [user_guide.md](user_guide.md), [RELEASING.md](RELEASING.md).
 

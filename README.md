@@ -2,7 +2,7 @@
 
 **VAPI OSP** is a platform for building custom APIs while keeping control over Vulkan: context, wrappers, tools, cross-API ABI. Window and input (GLFW), resize modes and frame cache, render context and pipelines, font module and UI text rendering.
 
-**Current API version:** 0.0.1-alpha (see `CMakeLists.txt` and [docs/VERSIONING.md](docs/VERSIONING.md)). Before 1.0, incompatible changes may occur. The library is **usable now**; broader test coverage is being added for production confidence.
+**Current API version:** 0.0.1-alpha (first alpha). See `CMakeLists.txt` and [docs/VERSIONING.md](docs/VERSIONING.md). Before 1.0, incompatible changes may occur. The library is **usable now**; broader test coverage is being added for production confidence.
 
 **Distribution:** The library is distributed as compiled binaries for **Windows**. Source code is published openly; official support and ready-made builds are for Windows only.
 
@@ -110,7 +110,7 @@ Headers: `#include "vapi.hpp"` (core, platform, gpu); for render `#include "rend
 - **High-level facade**: `FontRenderApp` — one call for a window with text rendering (`vapi_font_render`)
 - **UI widget system**: signals/slots (`Emitter<T>`), 13+ widget types, `VulkanUiPainter` for GPU-backed rendering (`vapi_ui`)
 
-**Current API version:** 0.0.1-alpha. **Distributed as Windows binaries.** Source code is open; official builds target Windows only.
+**Current API version:** 0.0.1-alpha (first alpha). **Distributed as Windows binaries.** Source code is open; official builds target Windows only.
 
 **Quick build (Windows):**
 ```

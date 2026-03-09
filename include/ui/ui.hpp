@@ -27,5 +27,7 @@
 #include "ui/assistant_backend.hpp"
 #include "ui/assistant_widget.hpp"
 #include "ui/math_area.hpp"
+#include "ui/list_view.hpp"
+#include "ui/run_ui_loop.hpp"
 
 #endif // VAPI_UI_UI_HPP
