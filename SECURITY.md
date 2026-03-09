@@ -4,7 +4,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.0.2b2 (current) | :white_check_mark: |
+| 0.0.2b3 (current) | :white_check_mark: |
+| 0.0.2b2 | :white_check_mark: |
 | 0.0.2b1 | :white_check_mark: |
 | 0.0.1b2 | :x: (upgrade recommended) |
 | 0.0.1-alpha | :x: (upgrade recommended) |

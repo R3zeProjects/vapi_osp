@@ -104,4 +104,4 @@ ctest --test-dir build --output-on-failure
 
 ---
 
-*Руководство актуально для версии API VAPI 0.0.2b2 (версия в `CMakeLists.txt`, документация в `docs/`). Быстрый старт в одну страницу — [quick_start.md](quick_start.md).*
+*Руководство актуально для версии API VAPI 0.0.2b3 (версия в `CMakeLists.txt`, документация в `docs/`). Быстрый старт в одну страницу — [quick_start.md](quick_start.md).*

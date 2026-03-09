@@ -29,3 +29,24 @@ Short table: where to find what. Details in [detail_docs/](detail_docs/).
 | **Window with text** | `FontRenderApp` | `init`, `setFont`, `setFontSize`, `addText`, `run` | [architecture.md](architecture.md), example [calculator_example.cpp](../examples/calculator_example.cpp) |
 
 **Naming:** In docs and examples **IPlatform** is used; alias **IPlatformBackend** is kept for compatibility. **PlatformKind** selects the platform backend (`Glfw` and others).
+
+---
+
+## Module dependencies (Vulkan SDK requirement)
+
+| Module | Requires Vulkan SDK | Notes |
+|--------|:-------------------:|-------|
+| `core/` | No | Pure C++ types, errors, file utils, logging |
+| `platform/` | No | Window/input abstraction (GLFW); exposes `getRequiredVulkanExtensions()` but does not include `vulkan.h` |
+| `font/` | No | Font loading, glyph atlas, text measurement — CPU-only |
+| `gpu/` | **Yes** | Vulkan wrappers (instance, device, swapchain, commands, sync). All `vk_*.hpp` headers include `vulkan/vulkan.h` |
+| `resource/` | **Yes** | Buffer/image/descriptor/staging managers. Uses Vulkan types (`VkBuffer`, `VkImage`, `VkFormat`, etc.) |
+| `render/` | **Yes** | Pipeline builder, shader modules, render context. Uses Vulkan types throughout |
+| `ui/` | No | Widget system and layout (CPU-side). `VulkanUiPainter` in `vapi_ui_vulkan` requires Vulkan |
+
+**Recommended includes:**
+- `#include "vapi.hpp"` — pulls in `core/`, `platform/`, and `gpu/` (requires Vulkan SDK)
+- `#include "render/render.hpp"` — render module (requires Vulkan SDK)
+- `#include "resource/resource.hpp"` — resource module (requires Vulkan SDK)
+- `#include "font/font.hpp"` — font module only (no Vulkan SDK needed)
+- `#include "render/font_render_app.hpp"` — high-level window+text (requires Vulkan SDK)

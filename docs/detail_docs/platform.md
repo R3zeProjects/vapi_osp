@@ -64,10 +64,10 @@ Adds lifecycle and callbacks:
 
 ### ResizeMode and ResizeConfig
 
-- **ResizeMode::Stretch** — при resize пересчитываются позиции элементов, привязанных к размеру окна (layout).
-- **ResizeMode::RevealHidden** — показывается кеш предобработанных кадров (со сдвигом 0, m, 2m, 3m пикселей), чтобы при растягивании окна сразу была картинка, а не полосы.
-- **ResizeConfig:** `mode`, `revealShiftPixels` (m = 1..3). Задаётся в `WindowConfig.resize` или через `setResizeConfig(id, config)` / `getResizeConfig(id)`.
-- В режиме **Stretch** в `onFramebufferResize` приложение пересчитывает layout и перерисовывает. В режиме **RevealHidden** приложение использует **ResizeRevealCache** (core/tools/resize_reveal_cache.hpp): каждый кадр вызывает `pushFrame(pixels, w, h)`, при resize рисует кешированный кадр `frame(variantForSize(newW, newH))` до следующей полной перерисовки.
+- **ResizeMode::Stretch** — on resize, element positions bound to window size are recalculated (layout).
+- **ResizeMode::RevealHidden** — a cache of pre-processed frames (shifted by 0, m, 2m, 3m pixels) is displayed so that stretching the window shows an image immediately instead of blank bars.
+- **ResizeConfig:** `mode`, `revealShiftPixels` (m = 1..3). Set via `WindowConfig.resize` or through `setResizeConfig(id, config)` / `getResizeConfig(id)`.
+- In **Stretch** mode, the application recalculates layout and redraws in `onFramebufferResize`. In **RevealHidden** mode, the application uses **ResizeRevealCache** (`core/tools/resize_reveal_cache.hpp`): each frame calls `pushFrame(pixels, w, h)`, and on resize it draws a cached frame via `frame(variantForSize(newW, newH))` until the next full redraw.
 
 ### WindowState
 

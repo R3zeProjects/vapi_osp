@@ -13,6 +13,28 @@ _(No changes yet.)_
 
 ---
 
+## [0.0.2b3] — 2026-03-09
+
+### Changed (API design)
+
+- **Strong-typed resource IDs** — `BufferId`, `ImageId`, `SamplerId`, `DescLayoutId`, `DescSetId` changed from `using = u32` to `enum class : u32`. Compiler now prevents mixing ID types. Added `kNullXxxId`, `kInvalidXxxId` sentinels, `toIndex()` and `advanceId()` helpers, `std::hash` specializations for use in `unordered_map`.
+- **IGpuBackend void\* getters** — `getDevice()`, `getInstance()`, `getSurface()`, `getSwapchain()` marked `@deprecated` in Doxygen; use typed helpers from `vulkan_backend_access.hpp` instead.
+
+### Added (Build / CI)
+
+- **Linux CI job** — Ubuntu 22.04 build+test job in `.github/workflows/ci.yml` (Ninja, GLFW, Vulkan SDK, ctest).
+- **SOVERSION** — Shared libraries on Linux now set `VERSION`/`SOVERSION` properties for proper `.so` symlinks.
+- **Symbol visibility** — `vapi_export.hpp`: `VAPI_API` uses `__attribute__((visibility("default")))` on GCC/Clang when building shared; `-fvisibility=hidden` added for shared targets.
+- **RPATH** — `CMAKE_BUILD_RPATH_USE_ORIGIN` and `CMAKE_INSTALL_RPATH_USE_LINK_PATH` enabled for Linux executables.
+
+### Documentation
+
+- **Module dependency matrix** — Added to `docs/quick_reference.md`: which modules require Vulkan SDK (`gpu/`, `resource/`, `render/`) and which are Vulkan-free (`core/`, `platform/`, `font/`).
+- **Linux quick start** — Added build instructions for Linux in `README.md`.
+- **api_evaluation.md** — Updated recommendations table and summary with v0.0.2b3 improvements.
+
+---
+
 ## [0.0.2b2] — 2026-03-09
 
 ### Fixed (Safety / Resource leaks)
@@ -108,7 +130,8 @@ First alpha release. Includes:
 
 ---
 
-[Unreleased]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.2b2...HEAD
+[Unreleased]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.2b3...HEAD
+[0.0.2b3]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.2b2...v0.0.2b3
 [0.0.2b2]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.2b1...v0.0.2b2
 [0.0.2b1]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.1b2...v0.0.2b1
 [0.0.1b2]: https://github.com/R3zeProjects/vapi_osp/compare/v0.0.1-alpha...v0.0.1b2

@@ -2,9 +2,9 @@
 
 **VAPI OSP** is a platform for building custom APIs while keeping control over Vulkan: context, wrappers, tools, cross-API ABI. Window and input (GLFW), resize modes and frame cache, render context and pipelines, font module and UI text rendering.
 
-**Current API version:** 0.0.2b2. See `CMakeLists.txt` and [docs/VERSIONING.md](docs/VERSIONING.md). Before 1.0, incompatible changes may occur. The library is **usable now**; broader test coverage is being added for production confidence.
+**Current API version:** 0.0.2b3. See `CMakeLists.txt` and [docs/VERSIONING.md](docs/VERSIONING.md). Before 1.0, incompatible changes may occur. The library is **usable now**; broader test coverage is being added for production confidence.
 
-**Distribution:** The library is distributed as compiled binaries for **Windows**. Source code is published openly; official support and ready-made builds are for Windows only.
+**Distribution:** The library is distributed as compiled binaries for **Windows**. Source code is published openly and builds on Linux (tested in CI). Official ready-made binaries are provided for Windows only.
 
 **License:** Free for non-commercial use. Commercial use requires a written agreement. See [LICENSE](LICENSE) and [licenses/LICENSE_VAPI.txt](licenses/LICENSE_VAPI.txt).
 
@@ -23,6 +23,26 @@
 3. Run example: `build\Debug\calculator_example.exe`
 
 See [docs/quick_start.md](docs/quick_start.md) for more.
+
+## Quick start (Linux)
+
+1. Install dependencies:
+   ```bash
+   sudo apt-get install cmake ninja-build build-essential \
+     libglfw3-dev libvulkan-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+   ```
+2. Build:
+   ```bash
+   cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+   cmake --build build
+   ```
+3. Run tests: `ctest --test-dir build`
+
+---
+
+## Module dependencies
+
+The `gpu/`, `resource/`, and `render/` modules require the **Vulkan SDK**. The `core/`, `platform/`, and `font/` modules are Vulkan-free. See [docs/quick_reference.md](docs/quick_reference.md#module-dependencies-vulkan-sdk-requirement) for the full dependency matrix.
 
 ---
 
@@ -86,7 +106,7 @@ Full examples: [examples/calculator_example.cpp](examples/calculator_example.cpp
 
 ## Documentation
 
-- **Russian:** [docs/ru/](docs/ru/) — документация на русском (копия основной).
+- **Russian:** [docs/ru/](docs/ru/) — documentation in Russian (mirror of main docs).
 - **[docs/quick_start.md](docs/quick_start.md)** — Quick start: build, run, minimal code on one page.
 - **[docs/](docs/)** — Full documentation: architecture, scenarios, API, examples.
 - **[docs/README.md](docs/README.md)** — Documentation index.
@@ -110,13 +130,19 @@ Headers: `#include "vapi.hpp"` (core, platform, gpu); for render `#include "rend
 - **High-level facade**: `FontRenderApp` — one call for a window with text rendering (`vapi_font_render`)
 - **UI widget system**: signals/slots (`Emitter<T>`), 13+ widget types, `VulkanUiPainter` for GPU-backed rendering (`vapi_ui`)
 
-**Current API version:** 0.0.2b2. **Distributed as Windows binaries.** Source code is open; official builds target Windows only.
+**Current API version:** 0.0.2b3. **Distributed as Windows binaries.** Source code is open and builds on both Windows and Linux (CI-tested).
 
 **Quick build (Windows):**
 ```
 cmake -B build -S . -DGLFW3_ROOT=C:/GLFW -DVulkan_ROOT=C:/VulkanSDK/...
 cmake --build build
 build\Debug\calculator_example.exe
+```
+
+**Quick build (Linux):**
+```bash
+sudo apt-get install cmake ninja-build libglfw3-dev libvulkan-dev
+cmake -B build -G Ninja && cmake --build build
 ```
 
 **License:** Dual — free for non-commercial use; commercial use requires a written agreement.

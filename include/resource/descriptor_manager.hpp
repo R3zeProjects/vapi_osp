@@ -65,7 +65,7 @@ private:
     std::vector<VkDescriptorPool> m_pools;
     std::vector<VkDescriptorPoolSize> m_poolSizes;
     u32 m_maxSets{0};
-    u32 m_nextLayoutId{1};
+    DescLayoutId m_nextLayoutId{DescLayoutId{1}};
     mutable std::mutex m_mutex;
 };
 

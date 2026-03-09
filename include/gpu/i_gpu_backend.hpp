@@ -42,12 +42,16 @@ public:
     virtual void shutdown() = 0;
     [[nodiscard]] virtual bool isInitialized() const = 0;
 
-    /** Native device handle (e.g. VkDevice for Vulkan). Cast after checking type(); or use getVulkanDevice() from vulkan_backend_access.hpp when type() == Vulkan. */
+    /** @deprecated Use getVulkanDevice() from vulkan_backend_access.hpp for type-safe access.
+     *  Native device handle (e.g. VkDevice for Vulkan). Check type() before casting. */
     [[nodiscard]] virtual void* getDevice() = 0;
+    /** @deprecated Use getVulkanInstance() from vulkan_backend_access.hpp for type-safe access. */
     [[nodiscard]] virtual void* getInstance() = 0;
-    /** Native surface (e.g. VkSurfaceKHR). nullptr if headless. */
+    /** @deprecated Use getVulkanSurface() from vulkan_backend_access.hpp for type-safe access.
+     *  Native surface (e.g. VkSurfaceKHR). nullptr if headless. */
     [[nodiscard]] virtual void* getSurface() = 0;
-    /** Native swapchain (e.g. VkSwapchainKHR). nullptr if not created. */
+    /** @deprecated Use getVulkanSwapchain() from vulkan_backend_access.hpp for type-safe access.
+     *  Native swapchain (e.g. VkSwapchainKHR). nullptr if not created. */
     [[nodiscard]] virtual void* getSwapchain() = 0;
 
     [[nodiscard]] virtual Result<void> recreateSwapchain(u32 width, u32 height) = 0;

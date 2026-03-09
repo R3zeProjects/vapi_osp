@@ -47,7 +47,7 @@
 
 ### Именование
 - **IPlatformBackend = IPlatform** — в документации и quick reference зафиксировано использование **IPlatform**; второй алиас оставлен для совместимости.
-- **BufferId** / **ImageId** — просто **u32**; **Handle&lt;T&gt;** с generation — другая модель. В resource везде ID без generation; при желании усилить защиту от use-after-free можно было бы сблизить с **Handle** (архитектурное решение на будущее).
+- ~~**BufferId** / **ImageId** — просто **u32**~~ **Исправлено (v0.0.2b3+):** Все ресурсные ID (`BufferId`, `ImageId`, `SamplerId`, `DescLayoutId`, `DescSetId`) теперь `enum class : u32` с компиляторной проверкой типов. Добавлены `kNullXxxId`, `kInvalidXxxId`, `toIndex()`, `advanceId()`. Миграция к `Handle<T>` с generation остаётся архитектурным решением на будущее.
 
 ### Два «корневых» include
 - **vapi.hpp** — в комментарии явно указано: для рендера `render/render.hpp`, для ресурсов `resource/resource.hpp`.
@@ -63,7 +63,7 @@
 |--------|--------|
 | Возврат ошибок | Высокая — везде **Result&lt;T&gt;** или **void** с явным отказом. |
 | Инициализация | **init(config)** / **shutdown()** у контекстов и менеджеров. |
-| Идентификаторы | **BufferId**, **ImageId**, **SamplerId** — один стиль; **WindowId** в платформе. |
+| Идентификаторы | **BufferId**, **ImageId**, **SamplerId** — `enum class : u32`, типобезопасные; **WindowId** в платформе. |
 | Конфиги | **GpuContextConfig**, **BufferDesc**, **ImageDesc** — структуры с разумными default. |
 | Vulkan-типы | Явно в API (VkDevice, VkBuffer в staging, VkPipeline в builders) — заявленный Vulkan-first соблюдён. |
 
@@ -81,14 +81,25 @@
 
 | # | Рекомендация | Статус |
 |---|------------------------------|--------|
-| 1 | **LoadShaderOptions** для опций загрузки шейдеров | **Выполнено** - struct + перегрузки loadFromFile/loadFromMemory. |
-| 2 | **uploadBuffer** по BufferId с проверкой границ | **Выполнено** - перегрузка uploadBuffer(BufferManager&, BufferId, data, offset). |
-| 3 | **Quick reference** - одна страница с классами/методами | **Выполнено** - docs/quick_reference.md. |
-| 4 | **IPlatform** как основное имя в документации | **Выполнено** - quick_reference и platform.md. |
-| 5 | **Pipeline cache** - опция в конфиге/builder при появлении | В плане (shortcomings.md). |
+| 1 | **LoadShaderOptions** для опций загрузки шейдеров | **Выполнено** — struct + перегрузки loadFromFile/loadFromMemory. |
+| 2 | **uploadBuffer** по BufferId с проверкой границ | **Выполнено** — перегрузка uploadBuffer(BufferManager&, BufferId, data, offset). |
+| 3 | **Quick reference** — одна страница с классами/методами | **Выполнено** — docs/quick_reference.md + матрица зависимостей модулей. |
+| 4 | **IPlatform** как основное имя в документации | **Выполнено** — quick_reference и platform.md. |
+| 5 | **Pipeline cache** — опция в конфиге/builder при появлении | В плане (shortcomings.md). |
+| 6 | **Строго типизированные ID** (BufferId, ImageId и др.) | **Выполнено** — `enum class : u32` вместо `using = u32`, kNullXxxId/kInvalidXxxId, `std::hash`. |
+| 7 | **CI Linux** — автоматическая сборка и тесты на Ubuntu | **Выполнено** — `.github/workflows/ci.yml` + Linux job. |
+| 8 | **Linux build polish** — SOVERSION, visibility, RPATH | **Выполнено** — CMakeLists.txt + vapi_export.hpp. |
+| 9 | **void\* в IGpuBackend** — @deprecated, типизированный доступ | **Выполнено** — vulkan_backend_access.hpp, @deprecated в Doxygen. |
+| 10 | **Документация зависимостей Vulkan SDK по модулям** | **Выполнено** — README.md + quick_reference.md. |
 
 ---
 
 ## 6. Итог
 
-API последовательный: единый **Result**/Error, разделение модулей, фасады (GpuContext, createPlatform), слой безопасности, связка с CPU (ICpuServices, IAppLogic). Ранее: смешение ID и handle, длинные сигнатуры, отсутствие справочника — частично устранены. Часть прежних слабых мест закрыта: **LoadShaderOptions**, **uploadBuffer(BufferManager&, BufferId, ...)**, **quick_reference.md**, комментарий в vapi.hpp, именование IPlatform. Оставшиеся нюансы соответствуют Vulkan-first. Оценка: **хорошее и расширяемое** API; удобство и документирование выше, чем в исходной оценке.
+API последовательный: единый **Result**/Error, разделение модулей, фасады (GpuContext, createPlatform), слой безопасности, связка с CPU (ICpuServices, IAppLogic). Прежние слабые места в значительной степени закрыты:
+- **Типобезопасность ID**: `enum class : u32` предотвращает смешение BufferId/ImageId на этапе компиляции.
+- **CI и Linux**: автоматическая сборка и тесты на Windows и Ubuntu; SOVERSION, visibility, RPATH для shared-библиотек.
+- **Типизированный доступ к бэкенду**: `vulkan_backend_access.hpp` вместо `void*` кастов.
+- **Документация**: quick_reference с матрицей зависимостей модулей, Linux quick start в README.
+
+Оценка: **хорошее и расширяемое** API; типобезопасность, кроссплатформенность и документирование значительно улучшены по сравнению с v0.0.2b1.

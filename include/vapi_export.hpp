@@ -16,6 +16,12 @@
 #  else
 #    define VAPI_API __declspec(dllimport)
 #  endif
+#elif defined(__GNUC__) || defined(__clang__)
+#  if defined(VAPI_OSP_BUILDING)
+#    define VAPI_API __attribute__((visibility("default")))
+#  else
+#    define VAPI_API
+#  endif
 #else
 #  define VAPI_API
 #endif

@@ -77,7 +77,7 @@ private:
     const VkDeviceWrapper* m_device{nullptr};
     VkDeviceSize          m_maxBufferSize{256ull * 1024 * 1024};
     std::unordered_map<BufferId, GpuBuffer> m_buffers;
-    BufferId m_nextId{1};
+    BufferId m_nextId{BufferId{1}};
     std::vector<BufferId> m_freeIds;
     mutable std::mutex m_mutex;
 };

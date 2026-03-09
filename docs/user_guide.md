@@ -229,4 +229,4 @@ Full list: [shortcomings.md](shortcomings.md).
 
 ---
 
-*Guide is current for VAPI API version 0.0.2b2 (version in `CMakeLists.txt`, docs in `docs/`). One-page quick start: [quick_start.md](quick_start.md).*
+*Guide is current for VAPI API version 0.0.2b3 (version in `CMakeLists.txt`, docs in `docs/`). One-page quick start: [quick_start.md](quick_start.md).*

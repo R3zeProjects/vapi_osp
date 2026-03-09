@@ -5,8 +5,38 @@
 #include "core/error.hpp"
 #include "core/interfaces/i_resource.hpp"
 #include <vulkan/vulkan.h>
+#include <functional>
 #include <vector>
 namespace vapi {
+
+// ── Strong-typed resource IDs ────────────────────────────────
+enum class BufferId     : u32 {};
+enum class ImageId      : u32 {};
+enum class SamplerId    : u32 {};
+enum class DescLayoutId : u32 {};
+enum class DescSetId    : u32 {};
+
+inline constexpr BufferId     kNullBufferId{0};
+inline constexpr ImageId      kNullImageId{0};
+inline constexpr SamplerId    kNullSamplerId{0};
+inline constexpr DescLayoutId kNullDescLayoutId{0};
+inline constexpr DescSetId    kNullDescSetId{0};
+
+inline constexpr BufferId     kInvalidBufferId{UINT32_MAX};
+inline constexpr ImageId      kInvalidImageId{UINT32_MAX};
+inline constexpr SamplerId    kInvalidSamplerId{UINT32_MAX};
+inline constexpr DescLayoutId kInvalidDescLayoutId{UINT32_MAX};
+inline constexpr DescSetId    kInvalidDescSetId{UINT32_MAX};
+
+template<typename IdT>
+constexpr u32 toIndex(IdT id) noexcept { return static_cast<u32>(id); }
+
+template<typename IdT>
+IdT advanceId(IdT& id) noexcept {
+    auto cur = id;
+    id = static_cast<IdT>(static_cast<u32>(id) + 1);
+    return cur;
+}
 
 // ── Buffer ────────────────────────────────────────────────────
 
@@ -109,19 +139,26 @@ struct DescriptorPoolSize {
     u32 count;
 };
 
-// ── Handle IDs ────────────────────────────────────────────────
-
-using BufferId     = u32;
-using ImageId      = u32;
-using SamplerId    = u32;
-using DescLayoutId = u32;
-using DescSetId    = u32;
-
-inline constexpr u32 kInvalidResourceId = UINT32_MAX;
-
 /// Bytes per pixel for R8G8B8A8 format (default for createTexture/updateTexture).
 inline constexpr u32 kTextureBytesPerPixelRGBA = 4u;
 
 } // namespace vapi
+
+// ── std::hash specializations for strong-typed IDs ───────────
+template<> struct std::hash<vapi::BufferId> {
+    std::size_t operator()(vapi::BufferId id) const noexcept { return std::hash<vapi::u32>{}(static_cast<vapi::u32>(id)); }
+};
+template<> struct std::hash<vapi::ImageId> {
+    std::size_t operator()(vapi::ImageId id) const noexcept { return std::hash<vapi::u32>{}(static_cast<vapi::u32>(id)); }
+};
+template<> struct std::hash<vapi::SamplerId> {
+    std::size_t operator()(vapi::SamplerId id) const noexcept { return std::hash<vapi::u32>{}(static_cast<vapi::u32>(id)); }
+};
+template<> struct std::hash<vapi::DescLayoutId> {
+    std::size_t operator()(vapi::DescLayoutId id) const noexcept { return std::hash<vapi::u32>{}(static_cast<vapi::u32>(id)); }
+};
+template<> struct std::hash<vapi::DescSetId> {
+    std::size_t operator()(vapi::DescSetId id) const noexcept { return std::hash<vapi::u32>{}(static_cast<vapi::u32>(id)); }
+};
 
 #endif

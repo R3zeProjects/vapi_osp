@@ -54,7 +54,7 @@ private:
 
     const VkDeviceWrapper* m_device{nullptr};
     std::unordered_map<ImageId, GpuImage> m_images;
-    ImageId m_nextId{1};
+    ImageId m_nextId{ImageId{1}};
     std::vector<ImageId> m_freeIds;
     mutable std::mutex m_mutex;
 };

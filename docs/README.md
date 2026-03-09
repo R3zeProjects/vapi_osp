@@ -1,13 +1,13 @@
 # VAPI documentation
 
-**Russian documentation:** [docs/ru/](ru/) — копия основной документации на русском языке.
+**Russian documentation:** [docs/ru/](ru/) — a copy of the main documentation in Russian.
 
 **VAPI** is a high-quality platform for building custom APIs while keeping full control over Vulkan (context, wrappers, tools, cross-API ABI, tests). It does not replace Vulkan but organizes its use and provides consistent contracts for extensions. Window and input are included; resize modes and frame cache support comfortable resizing; render context and pipelines handle drawing.
 
 **Getting started:** [Quick start (quick_start.md)](quick_start.md) — build, first run, and minimal code on one page. [Usage examples (usage_examples.md)](usage_examples.md) — ready-made code for a window with text and an interactive app.
 
 - **System install:** After building, run `cmake --install build`; then use `find_package(vapi_osp)` and targets `vapi_osp::vapi_*` in your project. See [integration.md](integration.md).
-- **Version scheme:** [VERSIONING.md](VERSIONING.md) (0. = release, 0.0 = beta, 0.0.1 = alpha, b = patch). **Current API version:** 0.0.2b2.
+- **Version scheme:** [VERSIONING.md](VERSIONING.md) (0. = release, 0.0 = beta, 0.0.1 = alpha, b = patch). **Current API version:** 0.0.2b3.
 - **Running tests:** [testing.md](testing.md) (test levels, CI, headless). Tests are built when `VAPI_BUILD_TESTS=ON`.
 - **Supported configurations:** [user_guide.md](user_guide.md) (platforms, requirements). Release: [RELEASING.md](RELEASING.md).
 
