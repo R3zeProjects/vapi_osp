@@ -45,7 +45,7 @@ public:
     void setExtraGlyphSpacing(f32 px) { m_extraGlyphSpacing = px < 0.f ? 0.f : px; m_extraGlyphSpacingRatio = 0.f; }
     [[nodiscard]] f32 extraGlyphSpacing() const { return m_extraGlyphSpacing; }
     /// Зазор пропорционально размеру шрифта: effective = ratio * pixelHeight (если ratio > 0, иначе используется setExtraGlyphSpacing).
-    void setExtraGlyphSpacingRatio(f32 ratio) { m_extraGlyphSpacingRatio = ratio < 0.f ? 0.f : ratio; }
+    void setExtraGlyphSpacingRatio(f32 ratio) { m_extraGlyphSpacingRatio = ratio < 0.f ? 0.f : ratio; m_extraGlyphSpacing = 0.f; }
     [[nodiscard]] f32 extraGlyphSpacingRatio() const { return m_extraGlyphSpacingRatio; }
     /// Зазор между глифами пропорционально длине глифа в шрифте: extra += ratio * advance (advance из шрифта).
     void setExtraGlyphSpacingRatioToWidth(f32 ratio) { m_extraGlyphSpacingRatioToWidth = ratio < 0.f ? 0.f : ratio; }
@@ -79,20 +79,16 @@ public:
      *  @param utf8 Текст в UTF-8. Пустая строка: вершины не добавляются, атлас заполняется существующими глифами.
      *  @param out Вершины дополняются (не очищаются перед вызовом). */
     void drawText(std::string_view utf8, f32 x, f32 y, color4 color, TextGeometry& out);
-    void drawText(const std::string& utf8, f32 x, f32 y, color4 color, TextGeometry& out);
 
     /** One-shot: measure + draw into out. Clears out first.
      *  @param utf8 Текст в UTF-8. Пустая строка: out очищается, вершины пусты, атлас пуст.
      *  @post out.vertices и out.atlasPixels содержат результат отрисовки. */
     void paint(std::string_view utf8, f32 x, f32 y, color4 color, TextGeometry& out);
-    void paint(const std::string& utf8, f32 x, f32 y, color4 color, TextGeometry& out);
 
     /** Дописать текст в внешний атлас и список вершин (для FontDrawList: несколько AddText в один список).
      *  @param utf8 Текст в UTF-8. Пустая строка: ничего не добавляется.
      *  @param atlas Атлас, в который добавляются глифы; при переполнении глиф может быть пропущен (пустой квад). */
     void appendText(std::string_view utf8, f32 x, f32 y, color4 color,
-        GlyphAtlas& atlas, std::vector<FontVertex>& vertices);
-    void appendText(const std::string& utf8, f32 x, f32 y, color4 color,
         GlyphAtlas& atlas, std::vector<FontVertex>& vertices);
 
 private:
@@ -105,7 +101,7 @@ private:
     GlyphAtlas   m_atlas;
     f32          m_pixelHeight{24.f};
     f32          m_subpixelScale{4.f};  ///< 4 = четверть пикселя
-    u32          m_oversample{1u};     ///< 2 = 2x растеризация для сглаживания
+    u32          m_oversample{2u};     ///< 2 = 2x растеризация для сглаживания
     bool         m_equalSpacing{false}; ///< true = фиксированный шаг; false = динамическая ширина по ширине чернил глифа
     f32          m_extraGlyphSpacing{0.f};  ///< доп. пиксели между глифами (если ratio == 0)
     f32          m_extraGlyphSpacingRatio{0.f};  ///< если > 0 — зазор = ratio * pixelHeight (пропорционально размеру)

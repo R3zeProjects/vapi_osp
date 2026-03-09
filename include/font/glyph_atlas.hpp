@@ -45,6 +45,9 @@ public:
      *  @return Указатель на квад, если глиф уже упакован в атлас; иначе nullptr. */
     [[nodiscard]] const GlyphQuad* getQuad(CodePoint cp) const;
 
+    /** Monotonically increasing generation counter; incremented when a new glyph is packed. */
+    [[nodiscard]] u64 generation() const { return m_generation; }
+
 private:
     u32 m_atlasWidth;
     u32 m_atlasHeight;
@@ -54,6 +57,7 @@ private:
     u32 m_rowHeight{0u};
     std::unordered_map<CodePoint, GlyphQuad> m_quads;
     bool m_atlasFull{false};
+    u64 m_generation{0};
 };
 
 } // namespace vapi

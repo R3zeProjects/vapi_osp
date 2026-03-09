@@ -5,6 +5,7 @@
 #include "resource/resource_types.hpp"
 #include <vulkan/vulkan.h>
 #include <mutex>
+#include <span>
 #include <unordered_map>
 #include <vector>
 
@@ -30,7 +31,11 @@ struct BufferManagerConfig {
 class BufferManager {
 public:
     BufferManager() = default;
-    ~BufferManager() = default;
+    ~BufferManager() { shutdown(); }
+    BufferManager(const BufferManager&) = delete;
+    BufferManager& operator=(const BufferManager&) = delete;
+    BufferManager(BufferManager&&) noexcept = default;
+    BufferManager& operator=(BufferManager&&) noexcept = default;
 
     /** Initialize with default config (max buffer size 256 MiB). */
     [[nodiscard]] Result<void> init(const VkDeviceWrapper* device);
@@ -54,6 +59,7 @@ public:
 
     // ── Write/Read ────────────────────────────────────────────
     [[nodiscard]] Result<void> write(BufferId id, const void* data, usize size, usize offset = 0);
+    [[nodiscard]] Result<void> write(BufferId id, std::span<const u8> data, usize offset = 0);
     [[nodiscard]] Result<void> flush(BufferId id, VkDeviceSize offset = 0, VkDeviceSize size = VK_WHOLE_SIZE);
 
     // ── Getters ───────────────────────────────────────────────

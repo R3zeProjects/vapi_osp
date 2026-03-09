@@ -79,6 +79,10 @@ public:
      *  @post getVertices().empty(), атлас пуст; последующие addText используют тот же шрифт. */
     void clear();
 
+    /** Clear only vertices, keeping the glyph atlas intact across frames.
+     *  Cached glyphs will be reused by subsequent addText calls without re-rasterization. */
+    void clearVertices();
+
     /** Зарезервировать место под вершины перед серией addText (снижает реаллокации).
      *  Оценка: до 6 вершин на символ UTF-8 (верхняя граница). */
     void reserveForText(std::string_view text);
@@ -96,6 +100,7 @@ public:
     [[nodiscard]] u32 getAtlasWidth() const { return m_atlas.atlasWidth(); }
     [[nodiscard]] u32 getAtlasHeight() const { return m_atlas.atlasHeight(); }
     [[nodiscard]] bool empty() const { return m_vertices.empty(); }
+    [[nodiscard]] u64 atlasGeneration() const { return m_atlas.generation(); }
 
 private:
     GlyphAtlas m_atlas;

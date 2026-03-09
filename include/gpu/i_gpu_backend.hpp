@@ -17,13 +17,15 @@ enum class GpuBackendType : u8 { Vulkan = 0, /* D3D12, Metal */ };
 /** Backend-agnostic config for GPU context init. Concrete backends map this to their own config. */
 struct GpuBackendConfig {
     std::string appName{"VAPI Application"};
-    std::vector<const char*> requiredExtensions;
+    std::vector<std::string> requiredExtensions;
     /** Native window handle (e.g. GLFWwindow*). nullptr = headless. */
     void* windowHandle{nullptr};
     u32 swapchainWidth{0};
     u32 swapchainHeight{0};
     bool createSwapchain{false};
     bool vsync{true};
+    /** Enable Vulkan validation layers (useful for debugging, significant runtime overhead). */
+    bool enableValidation{false};
 };
 
 /**

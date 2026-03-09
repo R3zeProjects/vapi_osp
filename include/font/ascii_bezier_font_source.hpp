@@ -18,8 +18,8 @@ public:
     [[nodiscard]] f32 lineHeight() const override;
     [[nodiscard]] f32 ascender() const override;
     [[nodiscard]] f32 descender() const override;
-    [[nodiscard]] f32 getAdvance(CodePoint cp) override;
-    [[nodiscard]] f32 getKernAdvance(CodePoint left, CodePoint right) override;
+    [[nodiscard]] f32 getAdvance(CodePoint cp) const override;
+    [[nodiscard]] f32 getKernAdvance(CodePoint left, CodePoint right) const override;
     [[nodiscard]] GlyphBitmap getGlyphBitmap(CodePoint cp) override;
     [[nodiscard]] bool hasGlyph(CodePoint cp) const override;
     [[nodiscard]] bool hasDescender(CodePoint cp) const override;

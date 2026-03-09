@@ -27,7 +27,11 @@ class ImageManager;
 class StagingManager {
 public:
     StagingManager() = default;
-    ~StagingManager() = default;
+    ~StagingManager() { shutdown(); }
+    StagingManager(const StagingManager&) = delete;
+    StagingManager& operator=(const StagingManager&) = delete;
+    StagingManager(StagingManager&&) noexcept = default;
+    StagingManager& operator=(StagingManager&&) noexcept = default;
 
     /** When transferQueue and transferPool are both non-null, copy commands are submitted to the transfer queue instead of graphics. */
     [[nodiscard]] Result<void> init(const VkDeviceWrapper* device, VkCommandManager* commands,
@@ -70,6 +74,11 @@ public:
                                                  VkImageLayout finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     [[nodiscard]] Result<void> uploadImageBatch(ImageManager& imageManager, ImageId dstId, std::span<const u8> data,
                                                  VkImageLayout finalLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    /** Record an image update into the batch (currentLayout -> TRANSFER_DST -> copy -> SHADER_READ_ONLY). */
+    [[nodiscard]] Result<void> updateImageBatch(VkImage dstImage, u32 width, u32 height, std::span<const u8> data,
+                                                VkImageLayout currentLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    [[nodiscard]] Result<void> updateImageBatch(ImageManager& imageManager, ImageId dstId, std::span<const u8> data,
+                                                VkImageLayout currentLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     /** Submit the batch and wait. Call only after beginBatch() and one or more *Batch calls. */
     [[nodiscard]] Result<void> endBatchAndSubmit();
 
@@ -92,6 +101,7 @@ private:
         VkBuffer       buffer{VK_NULL_HANDLE};
         VkDeviceMemory memory{VK_NULL_HANDLE};
         VkDeviceSize   size{0};
+        void*          mapped{nullptr};
     };
 
     struct RingSlot {

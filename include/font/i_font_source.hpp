@@ -43,10 +43,10 @@ public:
     [[nodiscard]] virtual f32 xHeight() const { return ascender() * 0.7f; }
 
     /// Advance width for codepoint (in pixels).
-    [[nodiscard]] virtual f32 getAdvance(CodePoint cp) = 0;
+    [[nodiscard]] virtual f32 getAdvance(CodePoint cp) const = 0;
 
     /// Kern advance between two codepoints (optional; 0 if no kerning).
-    [[nodiscard]] virtual f32 getKernAdvance(CodePoint left, CodePoint right) = 0;
+    [[nodiscard]] virtual f32 getKernAdvance(CodePoint left, CodePoint right) const = 0;
 
     /// Rasterize one glyph to alpha bitmap. Returns empty bitmap on missing glyph.
     [[nodiscard]] virtual GlyphBitmap getGlyphBitmap(CodePoint cp) = 0;

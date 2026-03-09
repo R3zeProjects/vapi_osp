@@ -49,8 +49,8 @@ This document records **recent documentation and repository updates** made to al
 **What was done**
 
 - A single file **`RELEASE_NOTES.md`** at the repository root was created (and later extended) to hold:
-  - **Version logic:** See [VERSIONING.md](VERSIONING.md). Scheme: `0.` = released, `0.0` = beta, `0.0.1` = alpha, `b` = patch. **Current API version:** 0.0.1-alpha (first alpha); in CMake: 0.0.1. Sequence: 0.0.1-alpha (first alpha) → 0.0.1b1 (patch) → 0.1.0 (first stable).
-  - **Current API version 0.0.1-alpha:** First alpha; set in `CMakeLists.txt` as 0.0.1.
+  - **Version logic:** See [VERSIONING.md](VERSIONING.md). Scheme: `0.` = released, `0.0` = beta, `0.0.1` = alpha, `b` = patch. **Current API version:** 0.0.2b2; in CMake: 0.0.2. Sequence: 0.0.1-alpha → 0.0.1b2 → 0.0.2b1 → 0.0.2b2 (current) → 0.1.0 (first stable).
+  - **Current API version 0.0.2b2:** API audit release; set in `CMakeLists.txt` as 0.0.2.
 
 **Purpose**
 
@@ -84,7 +84,7 @@ This document records **recent documentation and repository updates** made to al
 |------|----------|--------|
 | Author constant | `include/core/types.hpp` | Set to SHA3-512(`r3ze.projects@gmail.com`) hex value |
 | Ignore path | `.gitignore` | Added `oldvapi/` |
-| Current API version 0.0.1-alpha (first alpha) | `CMakeLists.txt`, `RELEASE_NOTES.md`, `docs/VERSIONING.md` | Explicit “current version” section; current = 0.0.1-alpha (first alpha); CMake 0.0.1 |
+| Current API version 0.0.2b2 | CMakeLists.txt, RELEASE_NOTES.md, docs/VERSIONING.md | Current = 0.0.2b2; CMake 0.0.2 |
 | Progress log | `docs/PROGRESS_AND_CHANGES.md` | This document (detailed English description of the above) |
 
 ---

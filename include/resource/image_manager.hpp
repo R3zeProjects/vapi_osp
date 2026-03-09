@@ -24,7 +24,11 @@ class VkCommandManager;
 class ImageManager {
 public:
     ImageManager() = default;
-    ~ImageManager() = default;
+    ~ImageManager() { shutdown(); }
+    ImageManager(const ImageManager&) = delete;
+    ImageManager& operator=(const ImageManager&) = delete;
+    ImageManager(ImageManager&&) noexcept = default;
+    ImageManager& operator=(ImageManager&&) noexcept = default;
 
     [[nodiscard]] Result<void> init(const VkDeviceWrapper* device);
     void shutdown();
@@ -51,6 +55,7 @@ private:
     const VkDeviceWrapper* m_device{nullptr};
     std::unordered_map<ImageId, GpuImage> m_images;
     ImageId m_nextId{1};
+    std::vector<ImageId> m_freeIds;
     mutable std::mutex m_mutex;
 };
 
